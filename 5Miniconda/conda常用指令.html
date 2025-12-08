@@ -1,0 +1,961 @@
+<!doctype html>
+<html lang="zh-CN">
+ <head> 
+  <meta charset="utf-8"> 
+  <link rel="canonical" href="https://blog.csdn.net/KRISNAT/article/details/125809675"> 
+  <meta http-equiv="content-type" content="text/html; charset=utf-8"> 
+  <meta name="renderer" content="webkit"> 
+  <meta name="force-rendering" content="webkit"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"> 
+  <meta name="report" content="{&quot;pid&quot;: &quot;blog&quot;, &quot;spm&quot;:&quot;1001.2101&quot;}"> 
+  <meta name="referrer" content="always"> 
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <link rel="alternate" media="handheld" href="#">  
+  <meta name="applicable-device" content="pc"> 
+  <link href="https://g.csdnimg.cn/static/logo/favicon32.ico" rel="shortcut icon" type="image/x-icon"> 
+  <title>conda常用指令_conda安装库命令-CSDN博客</title>  
+  <meta name="keywords" content="conda安装库命令"> 
+  <meta name="csdn-baidu-search" content="{&quot;autorun&quot;:true,&quot;install&quot;:true,&quot;keyword&quot;:&quot;conda安装库命令&quot;}"> 
+  <meta name="description" content="文章浏览阅读2.3w次，点赞75次，收藏692次。本文详细介绍了conda的基础命令，包括查看版本、更新、降级和卸载。重点讲解了conda环境的创建、切换、删除及管理，如激活、显示和删除环境。此外，还阐述了如何在环境中安装、卸载和查看软件包，以及如何管理安装源。最后，提到了使用`environment.yml`和`requirements.txt`文件进行环境和包的导入导出。文章提供了conda操作的实用技巧，如自动确认指令。"> 
+  <link rel="stylesheet" type="text/css" href="https://csdnimg.cn/release/blogv2/dist/pc/css/detail_enter-c282253ab5.min.css">  
+  <link rel="stylesheet" type="text/css" href="https://csdnimg.cn/release/blogv2/dist/pc/themesSkin/skin-blue/skin-blue-5e706cc758.min.css">    
+  <meta name="toolbar" content="{&quot;type&quot;:&quot;0&quot;,&quot;fixModel&quot;:&quot;1&quot;}">   
+  <link rel="stylesheet" type="text/css" href="https://csdnimg.cn/public/sandalstrap/1.4/css/sandalstrap.min.css"> 
+  <style>
+        .MathJax, .MathJax_Message, .MathJax_Preview{
+            display: none
+        }
+    </style>      
+ 	<style>
+	main div.blog-content-box pre {
+		max-height: 100%;
+		overflow-y: hidden;
+	}
+	</style>
+ </head>  
+ <body class="nodata  " style=""> 
+  <div id="toolbarBox" style="min-height: 48px;"></div>    
+  <link rel="stylesheet" href="https://csdnimg.cn/release/blogv2/dist/pc/css/blog_code-01256533b5.min.css"> 
+  <link rel="stylesheet" href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/chart-3456820cac.css"> 
+  <link rel="stylesheet" href="https://g.csdnimg.cn/lib/swiper/6.0.4/css/swiper.css">   
+  <div class="main_father clearfix d-flex justify-content-center mainfather-concision" style="height:100%;"> 
+   <div class="container clearfix container-concision" id="mainBox">  
+    <main>  
+     <div class="blog-content-box"> 
+      <div class="article-header-box" id="article-header-box"> 
+       <div class="article-header"> 
+        <div class="article-title-box"> 
+         <h1 class="title-article" id="articleContentId">conda常用指令</h1> 
+        </div>  
+       </div> 
+      </div> 
+      <div id="blogHuaweiyunAdvert" class=""></div> 
+      <div id="blogColumnPayAdvert" class=""> 
+       <div class="column-group"> 
+        <div class="column-group-item column-group0 column-group-item-one"> 
+         <div class="item-l"> 
+          <a class="item-target" href="https://blog.csdn.net/krisnat/category_11405659.html" target="_blank" title="Windows" data-report-view="{&quot;spm&quot;:&quot;1001.2101.3001.6332&quot;}" data-report-click="{&quot;spm&quot;:&quot;1001.2101.3001.6332&quot;}"> <img class="item-target" src="https://i-blog.csdnimg.cn/blog_column_migrate/0947bb06b22383d0fad0201077349ae2.jpeg?x-oss-process=image/resize,m_fixed,h_224,w_224" alt=""> <span class="title item-target"> <span> <span class="tit">Windows</span> <span class="dec">专栏收录该内容</span> </span> </span> </a> 
+         </div> 
+         <div class="item-m"> 
+          <span>30 篇文章</span> 
+         </div> 
+         <div class="item-r"> 
+          <a class="item-target article-column-bt articleColumnFreeBt" data-id="11405659">订阅专栏</a> 
+         </div> 
+        </div> 
+       </div> 
+      </div> 
+      <div class="ai-abstract-box"> 
+       <div class="ai-abstract"> 
+        <div class="abstract-content"> 
+         <img class="lock-img" src="https://i-operation.csdnimg.cn/images/a7311a21245d4888a669ca3155f1f4e5.png" alt="">本文详细介绍了conda的基础命令，包括查看版本、更新、降级和卸载。重点讲解了conda环境的创建、切换、删除及管理，如激活、显示和删除环境。此外，还阐述了如何在环境中安装、卸载和查看软件包，以及如何管理安装源。最后，提到了使用`environment.yml`和`requirements.txt`文件进行环境和包的导入导出。文章提供了conda操作的实用技巧，如自动确认指令。 
+        </div> 
+       </div> 
+      </div> 
+      <div class="starmap-box box1" data-spm="3001.11251" data-id="gpu_img_miniconda_py_3_8" data-utm-source="top" data-report-view="{&quot;spm&quot;:&quot;3001.11251&quot;,&quot;extra&quot;:{&quot;openMirrorId&quot;:&quot;gpu_img_miniconda_py_3_8&quot;}}" data-report-click="{&quot;spm&quot;:&quot;3001.11251&quot;,&quot;extra&quot;:{&quot;openMirrorId&quot;:&quot;gpu_img_miniconda_py_3_8&quot;}}">
+        部署运行你感兴趣的模型镜像
+       <button class="btn-go">一键部署</button> 
+      </div> 
+      <article class="baidu_pl"> 
+       <div id="article_content" class="article_content clearfix"> 
+        <link rel="stylesheet" href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/kdoc_html_views-1a98987dfd.css"> 
+        <link rel="stylesheet" href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/ck_htmledit_views-10bf609291.css"> 
+        <div id="content_views" class="markdown_views prism-atom-one-light"> 
+         <svg xmlns="http://www.w3.org/2000/svg" style="display: none;"> 
+          <path stroke-linecap="round" d="M5,0 0,2.5 5,5z" id="raphael-marker-block" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path> 
+         </svg> 
+         <p></p> 
+         <div class="toc"> 
+          <h4>文章目录</h4> 
+          <ul>
+           <li><a href="#conda_2">conda基础命令</a></li>
+           <li>
+            <ul>
+             <li><a href="#conda_3">查看conda帮助信息</a></li>
+             <li><a href="#conda_7">查看conda版本</a></li>
+             <li><a href="#conda_11">更新conda</a></li>
+             <li><a href="#conda_15">降级conda版本</a></li>
+             <li><a href="#condaanaconda_20">升级conda和anaconda</a></li>
+             <li><a href="#anaconda_28">卸载anaconda</a></li>
+            </ul> </li>
+           <li><a href="#conda_36">conda环境管理：创建、切换、删除等</a></li>
+           <li>
+            <ul>
+             <li><a href="#conda_37">创建conda环境</a></li>
+             <li><a href="#conda_42">激活（切换）conda环境</a></li>
+             <li><a href="#condapython_47">退出当前环境，默认进入上一个使用或的conda中python环境</a></li>
+             <li><a href="#conda_51">显示已安装的conda环境</a></li>
+             <li><a href="#conda_56">删除指定的conda环境</a></li>
+             <li><a href="#conda_67">复制conda环境</a></li>
+            </ul> </li>
+           <li><a href="#_73">环境软件包的管理：安装、卸载、查看等</a></li>
+           <li>
+            <ul>
+             <li><a href="#_74">查看当前环境中已安装的包</a></li>
+             <li><a href="#Python_80">查看指定环境中的Python软件包</a></li>
+             <li><a href="#_84">显示当前环境中的指定包</a></li>
+             <li><a href="#conda_89">conda命令在当前激活环境中安装需要的包</a></li>
+             <li><a href="#conda_94">定conda环境安装制定版本的包</a></li>
+             <li><a href="#conda_99">conda命令删除当前环境中安装的包</a></li>
+             <li><a href="#_104">精确查找当前环境中可以安装的包</a></li>
+             <li><a href="#_109">模糊查找当前环境中可以安装的包</a></li>
+             <li><a href="#condarequirementstxt_115">conda从requirements.txt文件安装需求包</a></li>
+            </ul> </li>
+           <li><a href="#condaPython_121">conda的Python软件包安装源管理</a></li>
+           <li>
+            <ul>
+             <li><a href="#_135">查看安装源</a></li>
+             <li><a href="#_141">添加安装源</a></li>
+             <li><a href="#_151">删除镜像源</a></li>
+             <li><a href="#Python_156">设置安装Python软件包时显示镜像源地址</a></li>
+            </ul> </li>
+           <li><a href="#environmentymlcondaPython_161">使用`environment.yml`文件导出或者创建conda的Python虚拟环境</a></li>
+           <li>
+            <ul>
+             <li><a href="#environmentyml_162">导出当前虚拟环境到指定`environment.yml`文件</a></li>
+             <li><a href="#environmentymlconda_169">根据指定`environment.yml`文件创建conda虚拟环境</a></li>
+            </ul> </li>
+           <li><a href="#requirementstxtcondaPython_174">使用`requirements.txt`文件管理conda虚拟环境中的Python软件包</a></li>
+           <li>
+            <ul>
+             <li><a href="#Pythonrequirementstxt_175">导出虚拟环境中的Python软件包到`requirements.txt`文件</a></li>
+             <li><a href="#requirementstxtPython_179">使用`requirements.txt`文件安装Python软件包</a></li>
+            </ul> </li>
+           <li><a href="#conda_183">conda指令执行技巧</a></li>
+           <li>
+            <ul>
+             <li><a href="#yyesy_184">在指令后输入`-y`或者`--yes`可以制动确认指令，避免后期再次输入`y`确认，例如：</a></li>
+            </ul> </li>
+          </ul> 
+         </div> 
+         <p></p> 
+         <h2><a id="conda_2"></a>conda基础命令</h2> 
+         <h3><a id="conda_3"></a>查看conda帮助信息</h3> 
+         <pre><code class="prism language-shell">conda <span class="token parameter variable">--help</span>  //或者：conda <span class="token parameter variable">-h</span>
+</code ></pre> 
+         <h3><a id="conda_7"></a>查看conda版本</h3> 
+         <pre><code class="prism language-shell">conda <span class="token parameter variable">--version</span>
+</code ></pre> 
+         <h3><a id="conda_11"></a>更新conda</h3> 
+         <pre><code class="prism language-shell">conda update conda
+</code ></pre> 
+         <h3><a id="conda_15"></a>降级conda版本</h3> 
+         <pre><code class="prism language-shell">conda <span class="token function">install</span> <span class="token parameter variable">-n</span> base <span class="token assign-left variable">conda</span><span class="token operator">==</span><span class="token number">4.6</span>.7
+</code ></pre> 
+         <h3><a id="condaanaconda_20"></a>升级conda和anaconda</h3> 
+         <pre><code class="prism language-shell">conda update conda
+</code ></pre> 
+         <pre><code class="prism language-shell">conda update anaconda
+</code ></pre> 
+         <h3><a id="anaconda_28"></a>卸载anaconda</h3> 
+         <pre><code class="prism language-shell"><span class="token function">rm</span> <span class="token parameter variable">-rf</span> anaconda
+</code ></pre> 
+         <hr> 
+         <h2><a id="conda_36"></a>conda环境管理：创建、切换、删除等</h2> 
+         <h3><a id="conda_37"></a>创建conda环境</h3> 
+         <pre><code class="prism language-shell">conda create <span class="token parameter variable">--name</span> 环境名 包名（多个包名用空格分隔）  //例如：conda create <span class="token parameter variable">--name</span> my_env <span class="token assign-left variable">python</span><span class="token operator">=</span><span class="token number">3.7</span> numpy pandas scipy
+</code ></pre> 
+         <h3><a id="conda_42"></a>激活（切换）conda环境</h3> 
+         <pre><code class="prism language-shell">conda activate 环境名  //例如：conda activate base
+</code ></pre> 
+         <h3><a id="condapython_47"></a>退出当前环境，默认进入上一个使用或的conda中python环境</h3> 
+         <pre><code class="prism language-shell">conda deactivate
+</code ></pre> 
+         <h3><a id="conda_51"></a>显示已安装的conda环境</h3> 
+         <pre><code class="prism language-shell">conda info <span class="token parameter variable">--envs</span>  //或者：conda info -e，亦或者conda <span class="token function">env</span> list
+</code ></pre> 
+         <h3><a id="conda_56"></a>删除指定的conda环境</h3> 
+         <ul>
+          <li>通过环境名删除</li>
+         </ul> 
+         <pre><code class="prism language-shell">conda remove <span class="token parameter variable">--name</span> 要删除的环境名 <span class="token parameter variable">--all</span>
+</code ></pre> 
+         <ul>
+          <li>通过指定环境文件位置删除（这个方法可以删除不同位置的同名环境）</li>
+         </ul> 
+         <pre><code class="prism language-shell">conda remove <span class="token parameter variable">-p</span> 要删除的环境所在位置 <span class="token parameter variable">--all</span>  //例如：conda remove <span class="token parameter variable">-p</span> C:<span class="token punctuation">\</span>Users<span class="token punctuation">\</span>user_name<span class="token punctuation">\</span>.conda<span class="token punctuation">\</span>envs<span class="token punctuation">\</span>env_name <span class="token parameter variable">--all</span>
+</code ></pre> 
+         <h3><a id="conda_67"></a>复制conda环境</h3> 
+         <pre><code class="prism language-shell">conda create <span class="token parameter variable">--name</span> 新环境名 <span class="token parameter variable">--clone</span> 被复制的环境名  //例如：conda create <span class="token parameter variable">--name</span> base <span class="token parameter variable">--clone</span> new_base
+</code ></pre> 
+         <hr> 
+         <h2><a id="_73"></a>环境软件包的管理：安装、卸载、查看等</h2> 
+         <h3><a id="_74"></a>查看当前环境中已安装的包</h3> 
+         <pre><code class="prism language-shell">conda list
+</code ></pre> 
+         <h3><a id="Python_80"></a>查看指定环境中的Python软件包</h3> 
+         <pre><code class="prism language-shell">conda list <span class="token parameter variable">--name</span> 环境名
+</code ></pre> 
+         <h3><a id="_84"></a>显示当前环境中的指定包</h3> 
+         <pre><code class="prism language-shell">conda list 包名
+</code ></pre> 
+         <h3><a id="conda_89"></a>conda命令在当前激活环境中安装需要的包</h3> 
+         <pre><code class="prism language-shell">conda <span class="token function">install</span> 包名  //例如：conda <span class="token function">install</span> numpy
+</code ></pre> 
+         <h3><a id="conda_94"></a>定conda环境安装制定版本的包</h3> 
+         <pre><code class="prism language-shell">conda <span class="token function">install</span> <span class="token parameter variable">--name</span> 环境名 要安装的包名<span class="token operator">=</span>版本号  //注意这里的版本号不是必须的
+</code ></pre> 
+         <h3><a id="conda_99"></a>conda命令删除当前环境中安装的包</h3> 
+         <pre><code class="prism language-shell">conda uninstall 包名
+</code ></pre> 
+         <h3><a id="_104"></a>精确查找当前环境中可以安装的包</h3> 
+         <pre><code class="prism language-shell">conda search --full-name 包的准确名字
+</code ></pre> 
+         <h3><a id="_109"></a>模糊查找当前环境中可以安装的包</h3> 
+         <pre><code class="prism language-shell">codna search 包的模糊名字
+</code ></pre> 
+         <h3><a id="condarequirementstxt_115"></a>conda从requirements.txt文件安装需求包</h3> 
+         <pre><code class="prism language-shell">conda <span class="token function">install</span> <span class="token parameter variable">--file</span>  requirements.txt <span class="token parameter variable">--yes</span>
+</code ></pre> 
+         <h2><a id="condaPython_121"></a>conda的Python软件包安装源管理</h2> 
+         <p>conda的Python软件包安装源设置后会在Windows系统当前用户目录下下面声场一个<code>.condarc</code >文件，可以通过记事本打开。<br> 例如：博主将conda的Python软件包下载源设置成清华大学镜像源后，<code>.condarc</code >文件内容如下：</p> 
+         <pre><code class="prism language-shell">channels:
+  - conda-forge
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+  - defaults
+show_channel_urls: <span class="token boolean">true</span>
+</code ></pre> 
+         <p>PS：💡那么问题来了，是否可以直接在用户文件夹下面创建<code>.condarc</code >文件，并将相关设置内容复制进去进而达成conda的Python元件包安装源设置呢？💯🉑答案是肯定的，而且很方便！！</p> 
+         <h3><a id="_135"></a>查看安装源</h3> 
+         <pre><code class="prism language-shell">conda config --show-sources
+</code ></pre> 
+         <h3><a id="_141"></a>添加安装源</h3> 
+         <ul>
+          <li>清华大学</li>
+         </ul> 
+         <pre><code class="prism language-shell">conda config <span class="token parameter variable">--add</span> channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+conda config <span class="token parameter variable">--add</span> channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
+conda config <span class="token parameter variable">--add</span> channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge 
+conda config <span class="token parameter variable">--add</span> channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/
+conda config <span class="token parameter variable">--add</span> channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/
+</code ></pre> 
+         <h3><a id="_151"></a>删除镜像源</h3> 
+         <pre><code class="prism language-shell">conda config <span class="token parameter variable">--remove</span> channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/
+</code ></pre> 
+         <h3><a id="Python_156"></a>设置安装Python软件包时显示镜像源地址</h3> 
+         <pre><code class="prism language-shell">conda config <span class="token parameter variable">--set</span> show_channel_urls <span class="token function">yes</span>
+</code ></pre> 
+         <h2><a id="environmentymlcondaPython_161"></a>使用<code>environment.yml</code >文件导出或者创建conda的Python虚拟环境</h2> 
+         <h3><a id="environmentyml_162"></a>导出当前虚拟环境到指定<code>environment.yml</code >文件</h3> 
+         <pre><code class="prism language-shell">conda <span class="token function">env</span> <span class="token builtin class-name">export</span> <span class="token operator">&gt;</span> environment.yml  <span class="token comment"># 在当前目录下生成环境文件</span>
+</code ></pre> 
+         <pre><code class="prism language-shell">conda <span class="token function">env</span> <span class="token builtin class-name">export</span> <span class="token operator">&gt;</span> <span class="token string">"environment.yml文件路径"</span>  <span class="token comment"># 指定文件路径</span>
+</code ></pre> 
+         <h3><a id="environmentymlconda_169"></a>根据指定<code>environment.yml</code >文件创建conda虚拟环境</h3> 
+         <pre><code class="prism language-shell">conda <span class="token function">env</span> create <span class="token parameter variable">--n</span> 环境名 <span class="token parameter variable">--f</span> <span class="token string">"environment.yml文件路径"</span>
+</code ></pre> 
+         <h2><a id="requirementstxtcondaPython_174"></a>使用<code>requirements.txt</code >文件管理conda虚拟环境中的Python软件包</h2> 
+         <h3><a id="Pythonrequirementstxt_175"></a>导出虚拟环境中的Python软件包到<code>requirements.txt</code >文件</h3> 
+         <pre><code class="prism language-shell">conda list <span class="token parameter variable">-e</span> <span class="token operator">&gt;</span> requirements.txt
+</code ></pre> 
+         <h3><a id="requirementstxtPython_179"></a>使用<code>requirements.txt</code >文件安装Python软件包</h3> 
+         <pre><code class="prism language-shell">conda <span class="token function">install</span> <span class="token parameter variable">--yes</span> <span class="token parameter variable">--file</span> requirements.txt
+</code ></pre> 
+         <h2><a id="conda_183"></a>conda指令执行技巧</h2> 
+         <h3><a id="yyesy_184"></a>在指令后输入<code>-y</code >或者<code>--yes</code >可以制动确认指令，避免后期再次输入<code>y</code >确认，例如：</h3> 
+         <pre><code class="prism language-shell">pip create <span class="token parameter variable">--name</span> demo <span class="token assign-left variable">python</span><span class="token operator">=</span><span class="token number">3.8</span> <span class="token parameter variable">--yes</span>  <span class="token comment"># 自动创建python环境demo，并指定python版本为3.8</span>
+</code ></pre> 
+         <pre><code class="prism language-shell">pip <span class="token function">install</span> numpy pandas matplotlib <span class="token parameter variable">-y</span>  <span class="token comment"># 自动安装numpy、pandas和matplotlib软件包</span>
+</code ></pre> 
+         <hr> 
+         <p>收集整理和创作不易, 若有帮助🉑, 请帮忙<code>点赞</code >👍➕<code>收藏</code >❤️, 谢谢!✨✨🚀🚀</p> 
+        </div> 
+        <link href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/markdown_views-375c595788.css" rel="stylesheet"> 
+        <link href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/style-e504d6a974.css" rel="stylesheet"> 
+       </div> 
+      </article> 
+      <div class="starmap-box box2" data-spm="3001.11252" data-id="gpu_img_miniconda_py_3_8" data-utm-source="bottom" data-report-view="{&quot;spm&quot;:&quot;3001.11252&quot;,&quot;extra&quot;:{&quot;openMirrorId&quot;:&quot;gpu_img_miniconda_py_3_8&quot;}}" data-report-click="{&quot;spm&quot;:&quot;3001.11252&quot;,&quot;extra&quot;:{&quot;openMirrorId&quot;:&quot;gpu_img_miniconda_py_3_8&quot;}}"> 
+       <p class="starmap-title">您可能感兴趣的与本文相关的镜像</p> 
+       <div class="starmap-content"> 
+        <div class="starmap-info-box"> 
+         <div class="img-box"> 
+          <img src="https://csdn-665-inscode.s3.cn-north-1.jdcloud-oss.com/image/cover/gpu_img_miniconda_py_3_8.png/middle" alt="Python3.8"> 
+         </div> 
+         <div class="info-box"> 
+          <div class="title-box"> 
+           <p class="title">Python3.8</p> 
+           <div class="tag-box"> 
+            <div class="tag-item">
+             Conda
+            </div> 
+            <div class="tag-item">
+             Python
+            </div> 
+           </div> 
+          </div> 
+          <p class="desc" title="Python 是一种高级、解释型、通用的编程语言，以其简洁易读的语法而闻名，适用于广泛的应用，包括Web开发、数据分析、人工智能和自动化脚本">Python 是一种高级、解释型、通用的编程语言，以其简洁易读的语法而闻名，适用于广泛的应用，包括Web开发、数据分析、人工智能和自动化脚本</p> 
+         </div> 
+        </div> 
+        <div class="starmap-operate-box"> 
+         <button class="starmap-operate-btn">一键部署运行</button> 
+        </div> 
+       </div> 
+      </div>  
+     </div>        
+     <div id="pcCommentBox" class="comment-box comment-box-new2 login-comment-box-new" style="display:none"> 
+      <div class="has-comment" style="display:block"> 
+       <div class="one-line-box"> 
+        <div class="has-comment-tit go-side-comment"> 
+         <span class="count">3</span>&nbsp;条评论 
+        </div> 
+        <div class="has-comment-con comment-operate-item"></div> 
+        <a class="has-comment-bt-right go-side-comment focus">写评论</a> 
+       </div> 
+      </div> 
+     </div> 
+     <div class="blog-comment-box-new" style="display: none;"> 
+      <h1>3 条评论</h1> 
+      <ul> 
+       <li> <a target="_blank" href="https://blog.csdn.net/m0_62648611"> <img src="https://profile-avatar.csdnimg.cn/1ac701ca4e9f4347b18a727f5070f8e5_m0_62648611.jpg!1" alt="m0_62648611" class="avatar"> </a> 
+        <div class="right-box"> 
+         <div class="new-info-box clearfix"> 
+          <div class="comment-top"> 
+           <div class="user-box"> 
+            <a class="name-href" target="_blank" href="https://blog.csdn.net/m0_62648611"> <span class="name ">努力弹琴的大风天</span></a> 
+            <span class="date" title="2023-03-08 08:33:42">2023.03.08</span> 
+            <div class="new-comment">
+             谢谢博主
+            </div> 
+           </div> 
+          </div> 
+         </div> 
+        </div> </li> 
+       <li> 
+        <ul> 
+         <li> <a target="_blank" href="https://blog.csdn.net/KRISNAT"> <img src="https://profile-avatar.csdnimg.cn/79009f2ee45243f18c980a5fae4c8d35_krisnat.jpg!1" alt="KRISNAT" class="avatar"> </a> 
+          <div class="right-box"> 
+           <div class="new-info-box clearfix"> 
+            <div class="comment-top"> 
+             <div class="user-box"> 
+              <a class="name-href" target="_blank" href="https://blog.csdn.net/KRISNAT"> <span class="name ">KRISNAT</span><span class="text">回复</span><span class="nick-name">努力弹琴的大风天</span> </a> 
+              <span class="date" title="2023-03-08 12:04:21">2023.03.08</span> 
+              <div class="new-comment">
+               [face]emoji:061.png[/face]
+              </div> 
+             </div> 
+            </div> 
+           </div> 
+          </div> </li> 
+        </ul> </li> 
+      </ul> 
+     </div>     
+     <div class="blog-footer-bottom" style="margin-top:10px;"></div>   
+    </main> 
+    <aside class="blog_container_aside "> 
+     <div id="asideProfile" class="aside-box active"> 
+      <div class="profile-intro d-flex"> 
+       <div class="avatar-box d-flex justify-content-center flex-column"> 
+        <a href="https://blog.csdn.net/KRISNAT" target="_blank" data-report-click="{&quot;mod&quot;:&quot;popu_379&quot;,&quot;spm&quot;:&quot;3001.4121&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/KRISNAT&quot;,&quot;ab&quot;:&quot;new&quot;}"> <img src="https://profile-avatar.csdnimg.cn/79009f2ee45243f18c980a5fae4c8d35_krisnat.jpg!1" class="avatar_pic"> </a> 
+       </div> 
+       <div class="user-info d-flex flex-column profile-intro-name-box"> 
+        <div class="profile-intro-name-boxTop"> 
+         <a href="https://blog.csdn.net/KRISNAT" target="_blank" class="" id="uid" title="KRISNAT" data-report-click="{&quot;mod&quot;:&quot;popu_379&quot;,&quot;spm&quot;:&quot;3001.4122&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/KRISNAT&quot;,&quot;ab&quot;:&quot;new&quot;}"> <span class="name" username="KRISNAT">KRISNAT</span> </a> 
+        </div> 
+        <div class="profile-intro-name-boxFooter-new"> 
+         <p class="profile-intro-name-leve"> <span> 博客等级 </span> <img class="level" src="https://csdnimg.cn/identity/blog5.png"> </p> 
+         <span class="profile-intro-name-years" title="已加入 CSDN 7年">码龄7年</span> 
+        </div> 
+       </div> 
+      </div> 
+      <div class="profile-intro-rank-information"> 
+       <dl> 
+        <a href="https://blog.csdn.net/KRISNAT" data-report-click="{&quot;mod&quot;:&quot;1598321000_001&quot;,&quot;spm&quot;:&quot;3001.4310&quot;}" data-report-query="t=1"> 
+         <dd>
+          <span>69</span>
+         </dd> 
+         <dt>
+          原创
+         </dt> </a> 
+       </dl> 
+       <dl title="3152"> 
+        <dd>
+         3152
+        </dd> 
+        <dt>
+         点赞
+        </dt> 
+       </dl> 
+       <dl title="10542"> 
+        <dd>
+         1万+
+        </dd> 
+        <dt>
+         收藏
+        </dt> 
+       </dl> 
+       <dl id="fanBox" title="184799"> 
+        <dd>
+         <span id="fan">18万+</span>
+        </dd> 
+        <dt>
+         粉丝
+        </dt> 
+       </dl> 
+      </div> 
+      <div class="profile-intro-name-boxOpration"> 
+       <div class="opt-letter-watch-box"> 
+        <a class="personal-watch bt-button" id="btnAttent">已关注</a> 
+       </div> 
+       <div class="opt-letter-watch-box"> 
+        <a rel="noopener" class="bt-button personal-letter" href="https://im.csdn.net/chat/KRISNAT" target="_blank">私信</a> 
+       </div> 
+      </div> 
+     </div> 
+     <div id="asideHotArticle" class="aside-box"> 
+      <h3 class="aside-title">热门文章</h3> 
+      <div class="aside-content"> 
+       <ul class="hotArticle-list"> 
+        <li> <a href="https://blog.csdn.net/KRISNAT/article/details/124041869" target="_blank" data-report-click="{&quot;mod&quot;:&quot;popu_541&quot;,&quot;spm&quot;:&quot;3001.4139&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/KRISNAT/article/details/124041869&quot;,&quot;ab&quot;:&quot;new&quot;}"> 超详细Ubuntu安装Anaconda步骤+Anconda常用命令 <img src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png" alt=""> <span class="read">198146</span> </a> </li> 
+        <li> <a href="https://blog.csdn.net/KRISNAT/article/details/124100113" target="_blank" data-report-click="{&quot;mod&quot;:&quot;popu_541&quot;,&quot;spm&quot;:&quot;3001.4139&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/KRISNAT/article/details/124100113&quot;,&quot;ab&quot;:&quot;new&quot;}"> 超详细VMware安装Ubuntu虚拟机步骤 <img src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png" alt=""> <span class="read">151245</span> </a> </li> 
+        <li> <a href="https://blog.csdn.net/KRISNAT/article/details/130670596" target="_blank" data-report-click="{&quot;mod&quot;:&quot;popu_541&quot;,&quot;spm&quot;:&quot;3001.4139&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/KRISNAT/article/details/130670596&quot;,&quot;ab&quot;:&quot;new&quot;}"> 详解MNIST数据集下载、解析及显示的Python实现 <img src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png" alt=""> <span class="read">138567</span> </a> </li> 
+        <li> <a href="https://blog.csdn.net/KRISNAT/article/details/123573393" target="_blank" data-report-click="{&quot;mod&quot;:&quot;popu_541&quot;,&quot;spm&quot;:&quot;3001.4139&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/KRISNAT/article/details/123573393&quot;,&quot;ab&quot;:&quot;new&quot;}"> 学位论文、中文期刊中参考文献著录格式【依据国家标准 GB/T 7714-2015】 <img src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png" alt=""> <span class="read">100590</span> </a> </li> 
+        <li> <a href="https://blog.csdn.net/KRISNAT/article/details/124068391" target="_blank" data-report-click="{&quot;mod&quot;:&quot;popu_541&quot;,&quot;spm&quot;:&quot;3001.4139&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/KRISNAT/article/details/124068391&quot;,&quot;ab&quot;:&quot;new&quot;}"> 超详细 Ubuntu安装PyTorch步骤 <img src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png" alt=""> <span class="read">72237</span> </a> </li> 
+       </ul> 
+      </div> 
+     </div> 
+     <div id="asideCategory" class="aside-box aside-box-column flexible-box-new"> 
+      <h3 class="aside-title">分类专栏</h3> 
+      <div class="aside-content" id="aside-content"> 
+       <ul> 
+        <li> <a class="clearfix special-column-name" href="https://blog.csdn.net/krisnat/category_12550316.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/krisnat/category_12550316.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+          <div class="special-column-bar "></div> <img src="https://i-blog.csdnimg.cn/blog_column_migrate/93b4cecfa8455f24625573e18a314ca7.png?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://i-blog.csdnimg.cn/columns/default/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> <span class="title oneline"> 数学 </span> </a> <span class="special-column-num">1篇</span> </li> 
+        <li> <a class="clearfix special-column-name" href="https://blog.csdn.net/krisnat/category_12766742.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/krisnat/category_12766742.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+          <div class="special-column-bar "></div> <img src="https://i-blog.csdnimg.cn/direct/6633d5ffbd3d4eb1acc41cd9d6fa1b71.png?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://i-blog.csdnimg.cn/columns/default/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> <span class="title oneline"> 机器学习数据集 </span> </a> <span class="special-column-num">4篇</span> </li> 
+        <li> <a class="clearfix special-column-name" href="https://blog.csdn.net/krisnat/category_12925707.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/krisnat/category_12925707.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+          <div class="special-column-bar "></div> <img src="https://i-blog.csdnimg.cn/columns/default/20201014180756780.png?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://i-blog.csdnimg.cn/columns/default/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> <span class="title oneline"> 科研绘图 </span> </a> </li> 
+        <li> <a class="clearfix special-column-name" href="https://blog.csdn.net/krisnat/category_12730173.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/krisnat/category_12730173.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+          <div class="special-column-bar "></div> <img src="https://i-blog.csdnimg.cn/columns/default/20201014180756754.png?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://i-blog.csdnimg.cn/columns/default/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> <span class="title oneline"> Windows使用VS Code和Latex撰写论文 </span> </a> </li> 
+        <li> <a class="clearfix special-column-name" href="https://blog.csdn.net/krisnat/category_11477200.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/krisnat/category_11477200.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+          <div class="special-column-bar "></div> <img src="https://i-blog.csdnimg.cn/blog_column_migrate/180f894ee1c909f03c0beb6ab1b86fb3.jpeg?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://i-blog.csdnimg.cn/columns/default/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> <span class="title oneline"> 机器学习 </span> </a> <span class="special-column-num">9篇</span> </li> 
+        <li> <a class="clearfix special-column-name" href="https://blog.csdn.net/krisnat/category_12366565.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/krisnat/category_12366565.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+          <div class="special-column-bar "></div> <img src="https://i-blog.csdnimg.cn/columns/default/20201014180756928.png?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://i-blog.csdnimg.cn/columns/default/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> <span class="title oneline"> 计算机视觉 </span> </a> <span class="special-column-num">3篇</span> </li> 
+        <li> <a class="clearfix special-column-name" href="https://blog.csdn.net/krisnat/category_12337951.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/krisnat/category_12337951.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+          <div class="special-column-bar "></div> <img src="https://i-blog.csdnimg.cn/columns/default/20201014180756724.png?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://i-blog.csdnimg.cn/columns/default/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> <span class="title oneline"> 机器人 </span> </a> <span class="special-column-num">2篇</span> </li> 
+        <li> <a class="clearfix special-column-name" href="https://blog.csdn.net/krisnat/category_11477185.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/krisnat/category_11477185.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+          <div class="special-column-bar "></div> <img src="https://i-blog.csdnimg.cn/blog_column_migrate/894543c78f94d9a1e7fefd17cf6cad5c.jpeg?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://i-blog.csdnimg.cn/columns/default/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> <span class="title oneline"> Linux </span> </a> <span class="special-column-num">15篇</span> </li> 
+        <li> <a class="clearfix special-column-name" href="https://blog.csdn.net/krisnat/category_11405659.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/krisnat/category_11405659.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+          <div class="special-column-bar "></div> <img src="https://i-blog.csdnimg.cn/blog_column_migrate/0947bb06b22383d0fad0201077349ae2.jpeg?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://i-blog.csdnimg.cn/columns/default/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> <span class="title oneline"> Windows </span> </a> <span class="special-column-num">30篇</span> </li> 
+        <li> <a class="clearfix special-column-name" href="https://blog.csdn.net/krisnat/category_11438103.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/krisnat/category_11438103.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+          <div class="special-column-bar "></div> <img src="https://i-blog.csdnimg.cn/blog_column_migrate/92855b1086f1e02ca6cf321f88e667aa.png?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://i-blog.csdnimg.cn/columns/default/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> <span class="title oneline"> ROS </span> </a> <span class="special-column-num">1篇</span> </li> 
+        <li> <a class="clearfix special-column-name" href="https://blog.csdn.net/krisnat/category_11437770.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/krisnat/category_11437770.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+          <div class="special-column-bar "></div> <img src="https://i-blog.csdnimg.cn/blog_column_migrate/7b38a6bec3f8fc02d731e450fd32032a.png?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://i-blog.csdnimg.cn/columns/default/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> <span class="title oneline"> Python </span> </a> <span class="special-column-num">15篇</span> </li> 
+        <li> <a class="clearfix special-column-name" href="https://blog.csdn.net/krisnat/category_11550615.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/krisnat/category_11550615.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+          <div class="special-column-bar "></div> <img src="https://i-blog.csdnimg.cn/blog_column_migrate/61ccc89580cef705c7eebfef25dfc258.png?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://i-blog.csdnimg.cn/columns/default/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> <span class="title oneline"> GIt </span> </a> <span class="special-column-num">4篇</span> </li> 
+        <li> <a class="clearfix special-column-name" href="https://blog.csdn.net/krisnat/category_11521716.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/krisnat/category_11521716.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+          <div class="special-column-bar "></div> <img src="https://i-blog.csdnimg.cn/blog_column_migrate/8f83e4e297c80c9a305bfd6678ffdd83.png?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://i-blog.csdnimg.cn/columns/default/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> <span class="title oneline"> 数据集 </span> </a> <span class="special-column-num">3篇</span> </li> 
+        <li> <a class="clearfix special-column-name" href="https://blog.csdn.net/krisnat/category_12327613.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/krisnat/category_12327613.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+          <div class="special-column-bar "></div> <img src="https://i-blog.csdnimg.cn/columns/default/20201014180756754.png?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://i-blog.csdnimg.cn/columns/default/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> <span class="title oneline"> 笔记 </span> </a> <span class="special-column-num">9篇</span> </li> 
+        <li> <a class="clearfix special-column-name" href="https://blog.csdn.net/krisnat/category_12581651.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/krisnat/category_12581651.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+          <div class="special-column-bar "></div> <img src="https://i-blog.csdnimg.cn/columns/default/20201014180756930.png?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://i-blog.csdnimg.cn/columns/default/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> <span class="title oneline"> KRISNAT </span> </a> </li> 
+       </ul> 
+      </div> 
+      <p class="text-center"> <a class="flexible-btn-new" data-report-click="{&quot;spm&quot;:&quot;3001.10779&quot;,&quot;strategy&quot;:&quot;展开全部&quot;}" data-maxheight="0" data-minheight="208px" data-fbox="#aside-content" data-flag="flag"><span class="text">展开全部</span> <img class="look-more" src="https://csdnimg.cn/release/blogv2/dist/pc/img/arrowup-line-bot-White.png" alt=""></a> <a class="flexible-btn-new-close" data-report-click="{&quot;spm&quot;:&quot;3001.10779&quot;,&quot;strategy&quot;:&quot;收起&quot;}" data-minheight="208px" data-fbox="#aside-content" data-scroll="true" data-flag="flag"><span class="text">收起</span> <img class="look-more" src="https://csdnimg.cn/release/blogv2/dist/pc/img/arrowup-line-top-White.png" alt=""></a> </p> 
+     </div> 
+     <div class="article-previous" id="article-previous"> 
+      <dl data-report-click="{&quot;spm&quot;:&quot;3001.10752&quot;,&quot;extend1&quot;:&quot;上一篇&quot;}" data-report-view="{&quot;spm&quot;:&quot;3001.10752&quot;,&quot;extend1&quot;:&quot;上一篇&quot;}"> 
+       <dt>
+         上一篇： 
+       </dt> 
+       <dd> 
+        <a href="https://blog.csdn.net/KRISNAT/article/details/126305759" data-report-query="spm=3001.10752"> 解决labelImg闪退问题 </a> 
+       </dd> 
+      </dl> 
+      <dl class="next" data-report-click="{&quot;spm&quot;:&quot;3001.10796&quot;,&quot;extend1&quot;:&quot;下一篇&quot;}" data-report-view="{&quot;spm&quot;:&quot;3001.10796&quot;,&quot;extend1&quot;:&quot;下一篇&quot;}"> 
+       <dt>
+         下一篇： 
+       </dt> 
+       <dd> 
+        <a href="https://blog.csdn.net/KRISNAT/article/details/126359773" data-report-query="spm=3001.10796"> 解决PowerShell无法使用conda的问题 </a> 
+       </dd> 
+      </dl> 
+     </div> 
+     <div id="asideHotArticle" class="aside-box"> 
+      <h3 class="aside-title">大家在看</h3> 
+      <div class="aside-content"> 
+       <ul class="hotArticle-list"> 
+        <li> <a href="https://blog.csdn.net/maihuohuo/article/details/155598438" target="_blank" data-report-click="{&quot;spm&quot;:&quot;3001.10093&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/maihuohuo/article/details/155598438&quot;,&quot;strategy&quot;:&quot;202_1052723-3629509_RCMD&quot;,&quot;ab&quot;:&quot;new&quot;}" data-report-view="{&quot;spm&quot;:&quot;3001.10093&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/maihuohuo/article/details/155598438&quot;,&quot;strategy&quot;:&quot;202_1052723-3629509_RCMD&quot;,&quot;ab&quot;:&quot;new&quot;}"> 网络工程师入门必备知识 <img src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png" alt=""> <span class="read">528</span> </a> </li> 
+        <li> <a href="https://blog.csdn.net/maihuohuo/article/details/155495452" target="_blank" data-report-click="{&quot;spm&quot;:&quot;3001.10093&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/maihuohuo/article/details/155495452&quot;,&quot;strategy&quot;:&quot;202_1052723-3629507_RCMD&quot;,&quot;ab&quot;:&quot;new&quot;}" data-report-view="{&quot;spm&quot;:&quot;3001.10093&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/maihuohuo/article/details/155495452&quot;,&quot;strategy&quot;:&quot;202_1052723-3629507_RCMD&quot;,&quot;ab&quot;:&quot;new&quot;}"> Python爬取网易热文实战 <img src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png" alt=""> <span class="read">1181</span> </a> </li> 
+        <li> <a href="https://blog.csdn.net/2501_92826758/article/details/155704191" target="_blank" data-report-click="{&quot;spm&quot;:&quot;3001.10093&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/2501_92826758/article/details/155704191&quot;,&quot;strategy&quot;:&quot;202_1052723-3629502_RCMD&quot;,&quot;ab&quot;:&quot;new&quot;}" data-report-view="{&quot;spm&quot;:&quot;3001.10093&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/2501_92826758/article/details/155704191&quot;,&quot;strategy&quot;:&quot;202_1052723-3629502_RCMD&quot;,&quot;ab&quot;:&quot;new&quot;}"> 基于微信小程序的数字乡村文旅平台毕业设计项目源码 </a> </li> 
+        <li> <a href="https://blog.csdn.net/qq_52324245/article/details/155679118" target="_blank" data-report-click="{&quot;spm&quot;:&quot;3001.10093&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/qq_52324245/article/details/155679118&quot;,&quot;strategy&quot;:&quot;202_1052723-3629498_RCMD&quot;,&quot;ab&quot;:&quot;new&quot;}" data-report-view="{&quot;spm&quot;:&quot;3001.10093&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/qq_52324245/article/details/155679118&quot;,&quot;strategy&quot;:&quot;202_1052723-3629498_RCMD&quot;,&quot;ab&quot;:&quot;new&quot;}"> Pipeline功能增加解析：批量命令高效处理 </a> </li> 
+        <li> <a href="https://blog.csdn.net/2501_92826758/article/details/155704124" target="_blank" data-report-click="{&quot;spm&quot;:&quot;3001.10093&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/2501_92826758/article/details/155704124&quot;,&quot;strategy&quot;:&quot;202_1052723-3629504_RCMD&quot;,&quot;ab&quot;:&quot;new&quot;}" data-report-view="{&quot;spm&quot;:&quot;3001.10093&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/2501_92826758/article/details/155704124&quot;,&quot;strategy&quot;:&quot;202_1052723-3629504_RCMD&quot;,&quot;ab&quot;:&quot;new&quot;}"> 基于微信小程序的学生学业预警管理系统的设计与实现毕业设计项目源码 </a> </li> 
+       </ul> 
+      </div> 
+     </div> 
+     <div id="asideArchive" class="aside-box" style="display:block!important; width:300px;"> 
+      <h3 class="aside-title">最新文章</h3> 
+      <div class="aside-content"> 
+       <ul class="inf_list clearfix"> 
+        <li class="clearfix"> <a href="https://blog.csdn.net/KRISNAT/article/details/142151165" target="_blank" data-report-click="{&quot;mod&quot;:&quot;popu_382&quot;,&quot;spm&quot;:&quot;3001.4136&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/KRISNAT/article/details/142151165&quot;,&quot;ab&quot;:&quot;left&quot;}" data-report-view="{&quot;mod&quot;:&quot;popu_382&quot;,&quot;spm&quot;:&quot;3001.4136&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/KRISNAT/article/details/142151165&quot;,&quot;ab&quot;:&quot;left&quot;}">详解ImageNet著名子数据集ILSVRC2012基于Python的下载、解析及可视化</a> </li> 
+        <li class="clearfix"> <a href="https://blog.csdn.net/KRISNAT/article/details/142145991" target="_blank" data-report-click="{&quot;mod&quot;:&quot;popu_382&quot;,&quot;spm&quot;:&quot;3001.4136&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/KRISNAT/article/details/142145991&quot;,&quot;ab&quot;:&quot;left&quot;}" data-report-view="{&quot;mod&quot;:&quot;popu_382&quot;,&quot;spm&quot;:&quot;3001.4136&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/KRISNAT/article/details/142145991&quot;,&quot;ab&quot;:&quot;left&quot;}">Python绘图库之Matplotlib：图与子图（Figure subfigures）</a> </li> 
+        <li class="clearfix"> <a href="https://blog.csdn.net/KRISNAT/article/details/141598905" target="_blank" data-report-click="{&quot;mod&quot;:&quot;popu_382&quot;,&quot;spm&quot;:&quot;3001.4136&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/KRISNAT/article/details/141598905&quot;,&quot;ab&quot;:&quot;left&quot;}" data-report-view="{&quot;mod&quot;:&quot;popu_382&quot;,&quot;spm&quot;:&quot;3001.4136&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/KRISNAT/article/details/141598905&quot;,&quot;ab&quot;:&quot;left&quot;}">详解PASCAL VOC数据集及基于Python和PyTorch的下载、解析及可视化【目标检测+类别分割】</a> </li> 
+       </ul> 
+       <div class="archive-bar"></div> 
+       <div class="archive-box"> 
+        <div class="archive-list-item">
+         <a href="https://blog.csdn.net/KRISNAT?type=blog&amp;year=2024&amp;month=09" target="_blank" data-report-click="{&quot;mod&quot;:&quot;popu_538&quot;,&quot;spm&quot;:&quot;3001.4138&quot;,&quot;ab&quot;:&quot;new&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/KRISNAT?type=blog&amp;year=2024&amp;month=09&quot;}"><span class="year">2024年</span><span class="num">8篇</span></a>
+        </div> 
+        <div class="archive-list-item">
+         <a href="https://blog.csdn.net/KRISNAT?type=blog&amp;year=2023&amp;month=12" target="_blank" data-report-click="{&quot;mod&quot;:&quot;popu_538&quot;,&quot;spm&quot;:&quot;3001.4138&quot;,&quot;ab&quot;:&quot;new&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/KRISNAT?type=blog&amp;year=2023&amp;month=12&quot;}"><span class="year">2023年</span><span class="num">36篇</span></a>
+        </div> 
+        <div class="archive-list-item">
+         <a href="https://blog.csdn.net/KRISNAT?type=blog&amp;year=2022&amp;month=11" target="_blank" data-report-click="{&quot;mod&quot;:&quot;popu_538&quot;,&quot;spm&quot;:&quot;3001.4138&quot;,&quot;ab&quot;:&quot;new&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/KRISNAT?type=blog&amp;year=2022&amp;month=11&quot;}"><span class="year">2022年</span><span class="num">18篇</span></a>
+        </div> 
+        <div class="archive-list-item">
+         <a href="https://blog.csdn.net/KRISNAT?type=blog&amp;year=2021&amp;month=12" target="_blank" data-report-click="{&quot;mod&quot;:&quot;popu_538&quot;,&quot;spm&quot;:&quot;3001.4138&quot;,&quot;ab&quot;:&quot;new&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/KRISNAT?type=blog&amp;year=2021&amp;month=12&quot;}"><span class="year">2021年</span><span class="num">7篇</span></a>
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+     <div class="starmap-box box3 aside-box" data-spm="3001.11253" data-id="gpu_img_miniconda_py_3_8" data-utm-source="side" data-report-view="{&quot;spm&quot;:&quot;3001.11253&quot;,&quot;extra&quot;:{&quot;openMirrorId&quot;:&quot;gpu_img_miniconda_py_3_8&quot;}}" data-report-click="{&quot;spm&quot;:&quot;3001.11253&quot;,&quot;extra&quot;:{&quot;openMirrorId&quot;:&quot;gpu_img_miniconda_py_3_8&quot;}}"> 
+      <div class="img-box"> 
+       <img src="https://csdn-665-inscode.s3.cn-north-1.jdcloud-oss.com/image/cover/gpu_img_miniconda_py_3_8.png/middle" alt="Python3.8"> 
+       <div class="img-tag">
+         AI算力推荐 
+       </div> 
+      </div> 
+      <div class="info-box"> 
+       <p class="title">Python3.8</p> 
+       <p class="desc" title="Python 是一种高级、解释型、通用的编程语言，以其简洁易读的语法而闻名，适用于广泛的应用，包括Web开发、数据分析、人工智能和自动化脚本">Python 是一种高级、解释型、通用的编程语言，以其简洁易读的语法而闻名，适用于广泛的应用，包括Web开发、数据分析、人工智能和自动化脚本</p> 
+       <div class="tag-box"> 
+        <div class="tag-item">
+         Conda
+        </div> 
+        <div class="tag-item">
+         Python
+        </div> 
+       </div> 
+      </div> 
+      <div class="operate-box"> 
+       <button class="btn-go-mall" data-spm="3001.11296">镜像市场</button> 
+       <button class="btn-go-deploy">一键部署</button> 
+      </div> 
+     </div> 
+     <!-- 详情页显示目录 --> 
+     <!--文章目录--> 
+     <div id="asidedirectory" class="aside-box"> 
+      <div class="groupfile groupfile-active" id="directory"> 
+       <h3 class="aside-title">目录</h3> 
+       <div class="align-items-stretch group_item" id="align-items-stretch"> 
+        <div class="pos-box"> 
+         <div class="scroll-box"> 
+          <div class="toc-box"></div> 
+         </div> 
+        </div> 
+       </div> 
+       <p class="flexible-btn-new active" id="flexible-btn-groupfile" data-report-click="{&quot;spm&quot;:&quot;3001.10780&quot;,&quot;strategy&quot;:&quot;展开全部&quot;}" data-minheight="117px" data-maxheight="446px" data-fbox="#align-items-stretch"><span class="text">展开全部</span> <img class="look-more" src="https://csdnimg.cn/release/blogv2/dist/pc/img/arrowup-line-bot-White.png" alt=""></p> 
+       <p class="flexible-btn-new-close active" data-report-click="{&quot;spm&quot;:&quot;3001.10780&quot;,&quot;strategy&quot;:&quot;收起&quot;}" data-minheight="117px" data-maxheight="446px" data-fbox="#align-items-stretch"><span class="text">收起</span> <img class="look-more" src="https://csdnimg.cn/release/blogv2/dist/pc/img/arrowup-line-top-White.png" alt=""></p> 
+      </div> 
+     </div> 
+     <div class="gitcode-qc-left-box aside-box" data-report-click="{&quot;spm&quot;:&quot;3001.11256&quot;, &quot;extra&quot;:&quot;{\&quot;position\&quot;:\&quot;left\&quot;}&quot;}"></div> 
+    </aside>    
+   </div> 
+   <div class="recommend-right align-items-stretch clearfix" id="rightAside" data-type="recommend"> 
+    <aside class="recommend-right_aside"> 
+     <div class="rightside-fixed-hide"> 
+      <div class="starmap-box box3 aside-box" data-spm="3001.11253" data-id="gpu_img_miniconda_py_3_8" data-utm-source="side" data-report-view="{&quot;spm&quot;:&quot;3001.11253&quot;,&quot;extra&quot;:{&quot;openMirrorId&quot;:&quot;gpu_img_miniconda_py_3_8&quot;}}" data-report-click="{&quot;spm&quot;:&quot;3001.11253&quot;,&quot;extra&quot;:{&quot;openMirrorId&quot;:&quot;gpu_img_miniconda_py_3_8&quot;}}"> 
+       <div class="img-box"> 
+        <img src="https://csdn-665-inscode.s3.cn-north-1.jdcloud-oss.com/image/cover/gpu_img_miniconda_py_3_8.png/middle" alt="Python3.8"> 
+        <div class="img-tag">
+          AI算力推荐 
+        </div> 
+       </div> 
+       <div class="info-box"> 
+        <p class="title">Python3.8</p> 
+        <p class="desc" title="Python 是一种高级、解释型、通用的编程语言，以其简洁易读的语法而闻名，适用于广泛的应用，包括Web开发、数据分析、人工智能和自动化脚本">Python 是一种高级、解释型、通用的编程语言，以其简洁易读的语法而闻名，适用于广泛的应用，包括Web开发、数据分析、人工智能和自动化脚本</p> 
+        <div class="tag-box"> 
+         <div class="tag-item">
+          Conda
+         </div> 
+         <div class="tag-item">
+          Python
+         </div> 
+        </div> 
+       </div> 
+       <div class="operate-box"> 
+        <button class="btn-go-mall" data-spm="3001.11296">镜像市场</button> 
+        <button class="btn-go-deploy">一键部署</button> 
+       </div> 
+      </div> 
+     </div> 
+     <div id="recommend-right"> 
+      <div class="flex-column aside-box groupfile groupfile-active " id="groupfile"> 
+       <div class="groupfile-div"> 
+        <h3 class="aside-title">目录</h3> 
+        <div class="align-items-stretch group_item" id="align-items-stretch-right"> 
+         <div class="pos-box"> 
+          <div class="scroll-box"> 
+           <div class="toc-box"></div> 
+          </div> 
+         </div> 
+        </div> 
+        <p class="flexible-btn-new" id="flexible-btn-groupfile" data-report-click="{&quot;spm&quot;:&quot;3001.10782&quot;,&quot;strategy&quot;:&quot;展开全部&quot;}" data-traigger="true" data-minheight="117px" data-maxheight="446px" data-fbox="#align-items-stretch-right"><span class="text">展开全部</span> <img class="look-more" src="https://csdnimg.cn/release/blogv2/dist/pc/img/arrowup-line-bot-White.png" alt=""></p> 
+        <p class="flexible-btn-new-close close" data-report-click="{&quot;spm&quot;:&quot;3001.10782&quot;,&quot;strategy&quot;:&quot;收起&quot;}" data-traigger="true" data-minheight="117px" data-maxheight="446px" data-fbox="#align-items-stretch-right"><span class="text">收起</span> <img class="look-more" src="https://csdnimg.cn/release/blogv2/dist/pc/img/arrowup-line-top-White.png" alt=""></p> 
+       </div> 
+      </div> 
+      <div class="gitcode-qc-right-box aside-box" data-report-click="{&quot;spm&quot;:&quot;3001.11256&quot;, &quot;extra&quot;:&quot;{\&quot;position\&quot;:\&quot;right\&quot;}&quot;}"></div> 
+      <div class="article-previous" id="article"> 
+       <dl data-report-click="{&quot;spm&quot;:&quot;3001.10752&quot;,&quot;extend1&quot;:&quot;上一篇&quot;}" data-report-view="{&quot;spm&quot;:&quot;3001.10752&quot;,&quot;extend1&quot;:&quot;上一篇&quot;}"> 
+        <dt>
+          上一篇： 
+        </dt> 
+        <dd> 
+         <a href="https://blog.csdn.net/KRISNAT/article/details/126305759" data-report-query="spm=3001.10752"> 解决labelImg闪退问题 </a> 
+        </dd> 
+       </dl> 
+       <dl class="next" data-report-click="{&quot;spm&quot;:&quot;3001.10796&quot;,&quot;extend1&quot;:&quot;下一篇&quot;}" data-report-view="{&quot;spm&quot;:&quot;3001.10796&quot;,&quot;extend1&quot;:&quot;下一篇&quot;}"> 
+        <dt>
+          下一篇： 
+        </dt> 
+        <dd> 
+         <a href="https://blog.csdn.net/KRISNAT/article/details/126359773" data-report-query="spm=3001.10796"> 解决PowerShell无法使用conda的问题 </a> 
+        </dd> 
+       </dl> 
+      </div> 
+      <div class="aside-box kind_person d-flex flex-column flexible-box-new"> 
+       <h3 class="aside-title">分类专栏</h3> 
+       <div class="align-items-stretch kindof_item" id="kind_person_column"> 
+        <div class="aside-content" id="aside-content-column"> 
+         <ul> 
+          <li> <a class="clearfix special-column-name" href="https://blog.csdn.net/krisnat/category_12550316.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/krisnat/category_12550316.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://i-blog.csdnimg.cn/blog_column_migrate/93b4cecfa8455f24625573e18a314ca7.png?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://i-blog.csdnimg.cn/columns/default/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> <span class=""> 数学 </span> </a> <span class="special-column-num">1篇</span> </li> 
+          <li> <a class="clearfix special-column-name" href="https://blog.csdn.net/krisnat/category_12766742.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/krisnat/category_12766742.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://i-blog.csdnimg.cn/direct/6633d5ffbd3d4eb1acc41cd9d6fa1b71.png?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://i-blog.csdnimg.cn/columns/default/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> <span class=""> 机器学习数据集 </span> </a> <span class="special-column-num">4篇</span> </li> 
+          <li> <a class="clearfix special-column-name" href="https://blog.csdn.net/krisnat/category_12925707.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/krisnat/category_12925707.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://i-blog.csdnimg.cn/columns/default/20201014180756780.png?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://i-blog.csdnimg.cn/columns/default/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> <span class=""> 科研绘图 </span> </a> </li> 
+          <li> <a class="clearfix special-column-name" href="https://blog.csdn.net/krisnat/category_12730173.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/krisnat/category_12730173.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://i-blog.csdnimg.cn/columns/default/20201014180756754.png?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://i-blog.csdnimg.cn/columns/default/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> <span class=""> Windows使用VS Code和Latex撰写论文 </span> </a> </li> 
+          <li> <a class="clearfix special-column-name" href="https://blog.csdn.net/krisnat/category_11477200.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/krisnat/category_11477200.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://i-blog.csdnimg.cn/blog_column_migrate/180f894ee1c909f03c0beb6ab1b86fb3.jpeg?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://i-blog.csdnimg.cn/columns/default/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> <span class=""> 机器学习 </span> </a> <span class="special-column-num">9篇</span> </li> 
+          <li> <a class="clearfix special-column-name" href="https://blog.csdn.net/krisnat/category_12366565.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/krisnat/category_12366565.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://i-blog.csdnimg.cn/columns/default/20201014180756928.png?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://i-blog.csdnimg.cn/columns/default/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> <span class=""> 计算机视觉 </span> </a> <span class="special-column-num">3篇</span> </li> 
+          <li> <a class="clearfix special-column-name" href="https://blog.csdn.net/krisnat/category_12337951.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/krisnat/category_12337951.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://i-blog.csdnimg.cn/columns/default/20201014180756724.png?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://i-blog.csdnimg.cn/columns/default/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> <span class=""> 机器人 </span> </a> <span class="special-column-num">2篇</span> </li> 
+          <li> <a class="clearfix special-column-name" href="https://blog.csdn.net/krisnat/category_11477185.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/krisnat/category_11477185.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://i-blog.csdnimg.cn/blog_column_migrate/894543c78f94d9a1e7fefd17cf6cad5c.jpeg?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://i-blog.csdnimg.cn/columns/default/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> <span class=""> Linux </span> </a> <span class="special-column-num">15篇</span> </li> 
+          <li> <a class="clearfix special-column-name" href="https://blog.csdn.net/krisnat/category_11405659.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/krisnat/category_11405659.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://i-blog.csdnimg.cn/blog_column_migrate/0947bb06b22383d0fad0201077349ae2.jpeg?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://i-blog.csdnimg.cn/columns/default/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> <span class=""> Windows </span> </a> <span class="special-column-num">30篇</span> </li> 
+          <li> <a class="clearfix special-column-name" href="https://blog.csdn.net/krisnat/category_11438103.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/krisnat/category_11438103.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://i-blog.csdnimg.cn/blog_column_migrate/92855b1086f1e02ca6cf321f88e667aa.png?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://i-blog.csdnimg.cn/columns/default/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> <span class=""> ROS </span> </a> <span class="special-column-num">1篇</span> </li> 
+          <li> <a class="clearfix special-column-name" href="https://blog.csdn.net/krisnat/category_11437770.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/krisnat/category_11437770.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://i-blog.csdnimg.cn/blog_column_migrate/7b38a6bec3f8fc02d731e450fd32032a.png?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://i-blog.csdnimg.cn/columns/default/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> <span class=""> Python </span> </a> <span class="special-column-num">15篇</span> </li> 
+          <li> <a class="clearfix special-column-name" href="https://blog.csdn.net/krisnat/category_11550615.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/krisnat/category_11550615.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://i-blog.csdnimg.cn/blog_column_migrate/61ccc89580cef705c7eebfef25dfc258.png?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://i-blog.csdnimg.cn/columns/default/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> <span class=""> GIt </span> </a> <span class="special-column-num">4篇</span> </li> 
+          <li> <a class="clearfix special-column-name" href="https://blog.csdn.net/krisnat/category_11521716.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/krisnat/category_11521716.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://i-blog.csdnimg.cn/blog_column_migrate/8f83e4e297c80c9a305bfd6678ffdd83.png?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://i-blog.csdnimg.cn/columns/default/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> <span class=""> 数据集 </span> </a> <span class="special-column-num">3篇</span> </li> 
+          <li> <a class="clearfix special-column-name" href="https://blog.csdn.net/krisnat/category_12327613.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/krisnat/category_12327613.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://i-blog.csdnimg.cn/columns/default/20201014180756754.png?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://i-blog.csdnimg.cn/columns/default/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> <span class=""> 笔记 </span> </a> <span class="special-column-num">9篇</span> </li> 
+          <li> <a class="clearfix special-column-name" href="https://blog.csdn.net/krisnat/category_12581651.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/krisnat/category_12581651.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://i-blog.csdnimg.cn/columns/default/20201014180756930.png?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://i-blog.csdnimg.cn/columns/default/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> <span class=""> KRISNAT </span> </a> </li> 
+         </ul> 
+        </div> 
+        <p class="text-center"> <a class="flexible-btn-new" data-report-click="{&quot;spm&quot;:&quot;3001.10783&quot;,&quot;strategy&quot;:&quot;展开全部&quot;}" data-traigger="true" data-maxheight="0" data-minheight="208px" data-fbox="#aside-content-column" data-flag="flag"><span class="text">展开全部</span> <img class="look-more" src="https://csdnimg.cn/release/blogv2/dist/pc/img/arrowup-line-bot-White.png" alt=""></a> <a class="flexible-btn-new-close" data-report-click="{&quot;spm&quot;:&quot;3001.10783&quot;,&quot;strategy&quot;:&quot;收起&quot;}" data-traigger="true" data-minheight="208px" data-fbox="#aside-content-column" data-scroll="true" data-flag="flag"><span class="text">收起</span> <img class="look-more" src="https://csdnimg.cn/release/blogv2/dist/pc/img/arrowup-line-top-White.png" alt=""></a> </p> 
+       </div> 
+      </div> 
+     </div> 
+    </aside> 
+   </div> 
+   <div class="recommend-right1  align-items-stretch clearfix" id="rightAsideConcision" data-type="recommend"> 
+    <aside class="recommend-right_aside"> 
+     <div id="recommend-right-concision"> 
+      <div class="flex-column aside-box groupfile" id="groupfileConcision"> 
+       <div class="groupfile-div1"> 
+        <h3 class="aside-title">目录</h3> 
+        <div class="align-items-stretch group_item"> 
+         <div class="pos-box"> 
+          <div class="scroll-box"> 
+           <div class="toc-box"></div> 
+          </div> 
+         </div> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </aside> 
+   </div> 
+  </div> 
+  <div class="mask-dark"></div> 
+  <div class="skin-boxshadow"></div> 
+  <div class="directory-boxshadow"></div> 
+  <div class="comment-side-box-shadow comment-side-tit-close" id="commentSideBoxshadow"> 
+   <div class="comment-side-content"> 
+    <div class="comment-side-tit"> 
+     <div class="comment-side-tit-count">
+      评论&nbsp;
+      <span class="count">3</span>
+     </div> 
+     <img class="comment-side-tit-close" src="https://csdnimg.cn/release/blogv2/dist/pc/img/closeBt.png">
+    </div> 
+    <div id="pcCommentSideBox" class="comment-box comment-box-new2 }" style="display:'block'}"> 
+     <div class="comment-edit-box d-flex"> 
+      <div class="user-img"> 
+      </div> 
+      <form id="commentform"> 
+       <textarea class="comment-content" name="comment_content" id="comment_content" placeholder="欢迎高质量的评论，低质的评论会被折叠" maxlength="1000"></textarea> 
+       <div class="comment-reward-box" style="background-image: url('https://img-home.csdnimg.cn/images/20230131025301.png');"> 
+        <a class="btn-remove-reward"></a> 
+        <div class="form-reward-box"> 
+         <div class="info">
+           成就一亿技术人! 
+         </div> 
+         <div class="price-info">
+           拼手气红包
+          <span class="price">6.0元</span> 
+         </div> 
+        </div> 
+       </div> 
+       <div class="comment-operate-box"> 
+        <div class="comment-operate-l"> 
+         <span id="tip_comment" class="tip">还能输入<em>1000</em>个字符</span> 
+        </div> 
+        <div class="comment-operate-c">
+          &nbsp; 
+        </div> 
+        <div class="comment-operate-r"> 
+         <div class="comment-operate-item comment-reward"> 
+          <img class="comment-operate-img" data-url="https://csdnimg.cn/release/blogv2/dist/pc/img/" src="https://csdnimg.cn/release/blogv2/dist/pc/img/commentReward.png" alt="红包"> 
+          <span class="comment-operate-tip">添加红包</span> 
+         </div> 
+         <div class="comment-operate-item comment-emoticon"> 
+          <img class="comment-operate-img" data-url="https://csdnimg.cn/release/blogv2/dist/pc/img/" src="https://csdnimg.cn/release/blogv2/dist/pc/img/commentEmotionIcon.png" alt="表情包"> 
+          <span class="comment-operate-tip">插入表情</span> 
+          <div class="comment-emoticon-box comment-operate-isshow"> 
+           <div class="comment-emoticon-img-box"></div> 
+          </div> 
+         </div> 
+         <div class="comment-operate-item comment-code"> 
+          <img class="comment-operate-img" data-url="https://csdnimg.cn/release/blogv2/dist/pc/img/" src="https://csdnimg.cn/release/blogv2/dist/pc/img/commentCodeIcon.png" alt="表情包"> 
+          <span class="comment-operate-tip">代码片</span> 
+          <div class="comment-code-box comment-operate-isshow"> 
+           <ul id="commentCode"> 
+            <li><a data-code="html">HTML/XML</a></li> 
+            <li><a data-code="objc">objective-c</a></li> 
+            <li><a data-code="ruby">Ruby</a></li> 
+            <li><a data-code="php">PHP</a></li> 
+            <li><a data-code="csharp">C</a></li> 
+            <li><a data-code="cpp">C++</a></li> 
+            <li><a data-code="javascript">JavaScript</a></li> 
+            <li><a data-code="python">Python</a></li> 
+            <li><a data-code="java">Java</a></li> 
+            <li><a data-code="css">CSS</a></li> 
+            <li><a data-code="sql">SQL</a></li> 
+            <li><a data-code="plain">其它</a></li> 
+           </ul> 
+          </div> 
+         </div> 
+         <div class="comment-operate-item"> 
+          <input type="hidden" id="comment_replyId" name="comment_replyId"> 
+          <input type="hidden" id="article_id" name="article_id" value="125809675"> 
+          <input type="hidden" id="comment_userId" name="comment_userId" value=""> 
+          <input type="hidden" id="commentId" name="commentId" value=""> 
+          <a data-report-click="{&quot;mod&quot;:&quot;1582594662_003&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4227&quot;,&quot;ab&quot;:&quot;new&quot;}"> <input type="submit" class="btn-comment btn-comment-input" value="评论"> </a> 
+         </div> 
+        </div> 
+       </div> 
+      </form> 
+     </div> 
+     <div class="comment-list-container"> 
+      <div class="comment-list-box comment-operate-item"> 
+      </div> 
+      <div id="lookGoodComment" class="look-good-comment side-look-comment"> 
+       <a class="look-more-comment">查看更多评论<img src="https://csdnimg.cn/release/blogv2/dist/pc/img/commentArrowDownWhite.png" alt=""></a> 
+      </div> 
+      <div id="lookFlodComment" class="look-flod-comment"> 
+       <span class="count"></span>&nbsp;条评论被折叠&nbsp;
+       <a class="look-more-flodcomment">查看</a> 
+      </div> 
+      <div class="opt-box text-center"> 
+       <div class="btn btn-sm btn-link-blue" id="btnMoreComment"></div> 
+      </div> 
+     </div> 
+    </div> 
+    <div id="pcFlodCommentSideBox" class="pc-flodcomment-sidebox"> 
+     <div class="comment-fold-tit">
+      <span id="lookUnFlodComment" class="back"><img src="https://csdnimg.cn/release/blogv2/dist/pc/img/commentArrowLeftWhite.png" alt=""></span>被折叠的&nbsp;
+      <span class="count"></span>&nbsp;条评论 
+      <a href="https://blogdev.blog.csdn.net/article/details/122245662" class="tip" target="_blank">为什么被折叠?</a> 
+      <a href="https://bbs.csdn.net/forums/FreeZone" class="park" target="_blank"> <img src="https://csdnimg.cn/release/blogv2/dist/pc/img/iconPark.png">到【灌水乐园】发言</a> 
+     </div> 
+     <div class="comment-fold-content"></div> 
+     <div id="lookBadComment" class="look-bad-comment side-look-comment"> 
+      <a class="look-more-comment">查看更多评论<img src="https://csdnimg.cn/release/blogv2/dist/pc/img/commentArrowDownWhite.png" alt=""></a> 
+     </div> 
+    </div> 
+   </div> 
+   <div class="comment-rewarddialog-box"> 
+    <div class="form-box"> 
+     <div class="title-box">
+       添加红包 
+      <a class="btn-form-close"></a> 
+     </div> 
+     <form id="commentRewardForm"> 
+      <div class="ipt-box"> 
+       <label for="txtName">祝福语</label> 
+       <div class="ipt-btn-box"> 
+        <input type="text" name="name" id="txtName" autocomplete="off" maxlength="50"> 
+        <a class="btn-ipt btn-random"></a> 
+       </div> 
+       <p class="notice">请填写红包祝福语或标题</p> 
+      </div> 
+      <div class="ipt-box"> 
+       <label for="txtSendAmount">红包数量</label> 
+       <div class="ipt-txt-box"> 
+        <input type="text" name="sendAmount" maxlength="4" id="txtSendAmount" placeholder="请填写红包数量(最小10个)" autocomplete="off"> 
+        <span class="after-txt">个</span> 
+       </div> 
+       <p class="notice">红包个数最小为10个</p> 
+      </div> 
+      <div class="ipt-box"> 
+       <label for="txtMoney">红包总金额</label> 
+       <div class="ipt-txt-box error"> 
+        <input type="text" name="money" maxlength="5" id="txtMoney" placeholder="请填写总金额(最低5元)" autocomplete="off"> 
+        <span class="after-txt">元</span> 
+       </div> 
+       <p class="notice">红包金额最低5元</p> 
+      </div> 
+      <div class="balance-info-box"> 
+       <label>余额支付</label> 
+       <div class="balance-info">
+         当前余额
+        <span class="balance">3.43</span>元 
+        <a href="https://i.csdn.net/#/wallet/balance/recharge" class="link-charge" target="_blank">前往充值 &gt;</a> 
+       </div> 
+      </div> 
+      <div class="opt-box"> 
+       <div class="pay-info">
+         需支付：
+        <span class="price">10.00</span>元 
+       </div> 
+       <button type="button" class="ml-auto btn-cancel">取消</button> 
+       <button type="button" class="ml8 btn-submit" disabled="true">确定</button> 
+      </div> 
+     </form> 
+    </div> 
+   </div> 
+   <div class="rr-guide-box"> 
+    <div class="rr-first-box"> 
+     <img src="https://csdnimg.cn/release/blogv2/dist/pc/img/guideRedReward02.png" alt=""> 
+     <button class="btn-guide-known next">下一步</button> 
+    </div> 
+    <div class="rr-second-box"> 
+     <img src="https://csdnimg.cn/release/blogv2/dist/pc/img/guideRedReward03.png" alt=""> 
+     <button class="btn-guide-known known">知道了</button> 
+    </div> 
+   </div> 
+  </div> 
+  <div class="redEnvolope" id="redEnvolope"> 
+   <div class="env-box"> 
+    <div class="env-container"> 
+     <div class="pre-open" id="preOpen"> 
+      <div class="top"> 
+       <header> 
+        <img class="clearTpaErr" :src="redpacketAuthor.avatar" alt=""> 
+        <div class="author">
+         成就一亿技术人!
+        </div> 
+       </header> 
+       <div class="bot-icon"></div> 
+      </div> 
+      <footer> 
+       <div class="red-openbtn open-start"></div> 
+       <div class="tip">
+         领取后你会自动成为博主和红包主的粉丝 
+        <a class="rule" target="_blank">规则</a> 
+       </div> 
+      </footer> 
+     </div> 
+     <div class="opened" id="opened"> 
+      <div class="bot-icon"> 
+       <header> 
+        <a class="creatorUrl" href="" target="_blank"> <img class="clearTpaErr" src="https://profile-avatar.csdnimg.cn/default.jpg!2" alt=""> </a> 
+        <div class="author"> 
+         <div class="tt">
+          hope_wisdom
+         </div> 发出的红包 
+        </div> 
+       </header> 
+      </div> 
+      <div class="receive-box"> 
+       <header></header> 
+       <div class="receive-list"> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+    <div class="close-btn"></div> 
+   </div> 
+  </div> 
+  <div class="pay-code"> 
+   <div class="pay-money">
+    实付
+    <span class="pay-money-span" data-nowprice="" data-oldprice="">元</span>
+   </div> 
+   <div class="content-blance">
+    <a class="blance-bt" href="javascript:;">使用余额支付</a>
+   </div> 
+   <div class="content-code"> 
+    <div id="payCode" data-id=""> 
+     <div class="renovate"> 
+      <img src="https://csdnimg.cn/release/blogv2/dist/pc/img/pay-time-out.png"> 
+      <span>点击重新获取</span> 
+     </div> 
+    </div> 
+    <div class="pay-style">
+     <span><img src="https://csdnimg.cn/release/blogv2/dist/pc/img/weixin.png"></span>
+     <span><img src="https://csdnimg.cn/release/blogv2/dist/pc/img/zhifubao.png"></span>
+     <span><img src="https://csdnimg.cn/release/blogv2/dist/pc/img/jingdong.png"></span>
+     <span class="text">扫码支付</span>
+    </div> 
+   </div> 
+   <div class="bt-close"> 
+    <svg t="1567152543821" class="icon" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="10924" xmlns:xlink="http://www.w3.org/1999/xlink" width="12" height="12"> 
+     <defs> 
+      <style type="text/css"></style> 
+     </defs> 
+     <path d="M512 438.378667L806.506667 143.893333a52.032 52.032 0 1 1 73.6 73.621334L585.621333 512l294.485334 294.485333a52.074667 52.074667 0 0 1-73.6 73.642667L512 585.621333 217.514667 880.128a52.053333 52.053333 0 1 1-73.621334-73.642667L438.378667 512 143.893333 217.514667a52.053333 52.053333 0 1 1 73.621334-73.621334L512 438.378667z" fill="" p-id="10925"></path> 
+    </svg> 
+   </div> 
+   <div class="pay-balance"> 
+    <input type="radio" class="pay-code-radio" data-type="details"> 
+    <span class="span">钱包余额</span> 
+    <span class="balance" style="color:#FC5531;font-size:14px;">0</span> 
+    <div class="pay-code-tile"> 
+     <img src="https://csdnimg.cn/release/blogv2/dist/pc/img/pay-help.png" alt=""> 
+     <div class="pay-code-content"> 
+      <div class="span"> 
+       <p class="title">抵扣说明：</p> 
+       <p> 1.余额是钱包充值的虚拟货币，按照1:1的比例进行支付金额的抵扣。<br> 2.余额无法直接购买下载，可以购买VIP、付费专栏及课程。</p> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+   <a class="pay-balance-con" href="https://i.csdn.net/#/wallet/balance/recharge" target="_blank"><img src="https://csdnimg.cn/release/blogv2/dist/pc/img/recharge.png" alt=""><span>余额充值</span></a> 
+  </div>  
+  <div class="keyword-dec-box" id="keywordDecBox"></div>       
+  <link rel="stylesheet" href="https://g.csdnimg.cn/lib/cboxEditor/1.1.6/embed-editor.min.css"> 
+  <link rel="stylesheet" href="https://csdnimg.cn/release/blog_editor_html/release1.6.12/ckeditor/plugins/codesnippet/lib/highlight/styles/atom-one-light.css">                  
+ </body>
+</html>

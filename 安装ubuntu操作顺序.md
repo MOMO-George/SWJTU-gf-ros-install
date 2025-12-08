@@ -57,7 +57,10 @@ sudo update-grub
 
 ```bash
 #我的建议是先把qq装了，目前wx没有linux，用qq来通信，好用一些，比如用qq下载好.deb或者.sh等文件直接传过来执行就好了，毕竟外网速度慢很多。
-
-#### 
+1、装QQ，便于通信使用。
+2、装clash-verge，便于下载包。
+3、microsoft-edge，便于找网站。
+4、随便下软件，比如typora,miniconda,vscode,百度网盘,cuda等等
+####下载比较难的软件我有写教程到文件夹中，请自便查取。
 ```
 
