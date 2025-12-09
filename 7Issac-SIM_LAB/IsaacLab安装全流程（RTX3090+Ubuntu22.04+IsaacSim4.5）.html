@@ -1,0 +1,718 @@
+<!doctype html>
+<html lang="zh-CN">
+ <head> 
+  <meta charset="utf-8"> 
+  <link rel="canonical" href="https://blog.csdn.net/qq_72049033/article/details/150110095"> 
+  <meta http-equiv="content-type" content="text/html; charset=utf-8"> 
+  <meta name="renderer" content="webkit"> 
+  <meta name="force-rendering" content="webkit"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"> 
+  <meta name="report" content="{&quot;pid&quot;: &quot;blog&quot;, &quot;spm&quot;:&quot;1001.2101&quot;}"> 
+  <meta name="referrer" content="always"> 
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <link rel="alternate" media="handheld" href="#">  
+  <meta name="applicable-device" content="pc"> 
+  <link href="https://g.csdnimg.cn/static/logo/favicon32.ico" rel="shortcut icon" type="image/x-icon"> 
+  <title>Isaac Lab安装全流程（RTX 3090+Ubuntu 22.04+Isaac Sim 4.5）_isaaclab安装-CSDN博客</title>   
+  <meta name="keywords" content="isaaclab安装"> 
+  <meta name="csdn-baidu-search" content="{&quot;autorun&quot;:true,&quot;install&quot;:true,&quot;keyword&quot;:&quot;isaaclab安装&quot;}"> 
+  <meta name="description" content="文章浏览阅读2.1k次，点赞15次，收藏25次。本文介绍了IsaacLab的安装流程，包括克隆仓库、创建符号链接、配置Conda环境、安装依赖库等步骤。作者选择二进制安装方式，详细说明了从环境搭建到测试验证的全过程。_isaaclab安装"> 
+  <link rel="stylesheet" type="text/css" href="https://csdnimg.cn/release/blogv2/dist/pc/css/detail_enter-c282253ab5.min.css">  
+  <link rel="stylesheet" type="text/css" href="https://csdnimg.cn/release/blogv2/dist/pc/themesSkin/skin-1024/skin-1024-ecd36efea2.min.css">    
+  <meta name="toolbar" content="{&quot;type&quot;:&quot;0&quot;,&quot;fixModel&quot;:&quot;1&quot;}">   
+  <link rel="stylesheet" type="text/css" href="https://csdnimg.cn/public/sandalstrap/1.4/css/sandalstrap.min.css"> 
+  <style>
+        .MathJax, .MathJax_Message, .MathJax_Preview{
+            display: none
+        }
+    </style>      
+ 	<style>
+	main div.blog-content-box pre {
+		max-height: 100%;
+		overflow-y: hidden;
+	}
+	</style>
+ </head>  
+ <body class="nodata  " style=""> 
+  <div id="toolbarBox" style="min-height: 48px;"></div>    
+  <link rel="stylesheet" href="https://csdnimg.cn/release/blogv2/dist/pc/css/blog_code-01256533b5.min.css"> 
+  <link rel="stylesheet" href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/chart-3456820cac.css"> 
+  <link rel="stylesheet" href="https://g.csdnimg.cn/lib/swiper/6.0.4/css/swiper.css">   
+  <div class="main_father clearfix d-flex justify-content-center mainfather-concision" style="height:100%;"> 
+   <div class="container clearfix container-concision" id="mainBox">  
+    <main>  
+     <div class="blog-content-box"> 
+      <div class="article-header-box" id="article-header-box"> 
+       <div class="article-header"> 
+        <div class="article-title-box"> 
+         <h1 class="title-article" id="articleContentId">Isaac Lab安装全流程（RTX 3090+Ubuntu 22.04+Isaac Sim 4.5）</h1> 
+        </div> 
+        <div class="ai-title-box"> 
+         <div class="ai-title-abstract"> 
+          <img class="lock-img" src="https://i-operation.csdnimg.cn/images/cf31225e169b4512917b2e77694eb0a2.png" alt="">Isaac Lab安装指南（Ubuntu 22.04+RTX 3090） 
+         </div> 
+        </div>  
+       </div> 
+      </div> 
+      <div id="blogHuaweiyunAdvert" class=""></div> 
+      <div id="blogColumnPayAdvert" class=""> 
+       <div class="column-group"> 
+        <div class="column-group-item column-group0 column-group-item-one"> 
+         <div class="item-l"> 
+          <a class="item-target" href="https://blog.csdn.net/qq_72049033/category_13024345.html" target="_blank" title="Isaac Sim" data-report-view="{&quot;spm&quot;:&quot;1001.2101.3001.6332&quot;}" data-report-click="{&quot;spm&quot;:&quot;1001.2101.3001.6332&quot;}"> <img class="item-target" src="https://i-blog.csdnimg.cn/columns/default/20201014180756916.png?x-oss-process=image/resize,m_fixed,h_224,w_224" alt=""> <span class="title item-target"> <span> <span class="tit">Isaac Sim</span> <span class="dec">专栏收录该内容</span> </span> </span> </a> 
+         </div> 
+         <div class="item-m"> 
+          <span>3 篇文章</span> 
+         </div> 
+         <div class="item-r"> 
+          <a class="item-target article-column-bt articleColumnFreeBt" data-id="13024345">订阅专栏</a> 
+         </div> 
+        </div> 
+       </div> 
+      </div> 
+      <article class="baidu_pl"> 
+       <div id="article_content" class="article_content clearfix"> 
+        <link rel="stylesheet" href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/kdoc_html_views-1a98987dfd.css"> 
+        <link rel="stylesheet" href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/ck_htmledit_views-10bf609291.css"> 
+        <div id="content_views" class="htmledit_views atom-one-dark"> 
+         <p style="margin-left:0px; margin-right:0px">在上一篇文章中，我已经完成了Isaac Sim的安装。</p> 
+         <p style="margin-left:0px; margin-right:0px">由于需要利用Isaac Sim进行强化学习，在已经安装好的Isaac Sim的基础上，我还需要下载安装Isaac Lab。安装过程中，我参考了翻译版的<a class="link-info" href="https://docs.robotsfan.com/isaaclab/index.html" title="NVIDIA Isaac Lab官方文档" rel="nofollow">NVIDIA Isaac Lab官方文档</a>，并结合自己的踩坑经验整理出以下安装流程。</p> 
+         <p style="margin-left:0px; margin-right:0px">官方提供三种安装方式：pip安装、二进制安装和高级安装，我选择的是二进制安装。</p> 
+         <p style="margin-left:0px; margin-right:0px"><img alt="" class="left" height="354" src="https://i-blog.csdnimg.cn/direct/ca3ac40168b94ec6ab15624719beeaff.png" width="220"></p> 
+         <h2 style="margin-left:0px; margin-right:0px">一、克隆Isaac Lab</h2> 
+         <p style="margin-left:0px; margin-right:0px">最初我使用了SSH地址进行克隆，但SSH地址无效，改用HTTPS地址后克隆成功：</p> 
+         <pre><code class="language-bash">​git clone https://github.com/isaac-sim/IsaacLab.git</code ></pre> 
+         <p><img alt="" class="left" height="319" src="https://i-blog.csdnimg.cn/direct/be2353706e3c44a18a0ece93238d5403.png" width="570"></p> 
+         <h2 style="margin-left:0px; margin-right:0px">二、创建Isaac Sim符号链接</h2> 
+         <p style="margin-left:0px; margin-right:0px">在已安装的Isaac Sim根目录和Isaac Lab目录的&nbsp;_isaac_sim&nbsp;之间建立符号链接，以便Isaac Lab正确调用Isaac Sim模块：</p> 
+         <pre><code class="language-bash">cd IsaacLab
+ln -s /home/&lt;username&gt;/isaacsim _isaac_sim</code ></pre> 
+         <h2 style="margin-left:0px; margin-right:0px">三、配置Conda环境（可选，但推荐）</h2> 
+         <p style="margin-left:0px; margin-right:0px">虽然此步骤可以跳过，并直接使用Isaac Sim自带的Python环境，但还是建议执行——该过程会自动安装Isaac Lab运行所需的全部依赖，省去了手动安装的麻烦。</p> 
+         <p style="margin-left:0px; margin-right:0px">使用以下命令创建Conda环境：</p> 
+         <pre><code class="language-bash">./isaaclab.sh --conda&nbsp; # or "./isaaclab.sh -c"</code ></pre> 
+         <p style="margin-left:0px; margin-right:0px">如果需要自定义环境名，也可以（将my_env改成自定义的环境名）：</p> 
+         <pre><code class="language-bash">./isaaclab.sh --conda my_env&nbsp; # or "./isaaclab.sh -c my_env"</code ></pre> 
+         <p style="margin-left:0px; margin-right:0px">创建后激活环境</p> 
+         <pre><code class="language-bash">conda activate env_isaaclab  # or ”conda activate my_env”</code ></pre> 
+         <h2 style="margin-left:0px; margin-right:0px">四、安装Isaac Lab</h2> 
+         <p style="margin-left:0px; margin-right:0px">使用apt安装依赖：</p> 
+         <pre><code class="language-bash">sudo apt install cmake build-essential</code ></pre> 
+         <p style="margin-left:0px; margin-right:0px">安装Isaac Lab：</p> 
+         <pre><code class="language-bash">./isaaclab.sh --install # or "./isaaclab.sh -i"</code ></pre> 
+         <p style="margin-left:0px; margin-right:0px">上述代码将按默认设置安装所有学习框架。如果想只安装特定框架，可以将框架的名称作为参数传递。例如，为了只安装rl_games框架，可以运行：</p> 
+         <pre><code class="language-bash">./isaaclab.sh --install rl_games</code ></pre> 
+         <h2 style="margin-left:0px; margin-right:0px">五、验证Isaac Lab安装</h2> 
+         <p style="margin-left:0px; margin-right:0px">使用isaaclab.sh运行测试脚本：</p> 
+         <pre><code class="language-bash">./isaaclab.sh -p scripts/tutorials/00_sim/create_empty.py</code ></pre> 
+         <p style="margin-left:0px; margin-right:0px">或在Conda环境中直接运行Python：</p> 
+         <pre><code class="language-bash">python scripts/tutorials/00_sim/create_empty.py</code ></pre> 
+         <p style="margin-left:0px; margin-right:0px">如果看到仿真环境正常启动，并显示具有黑色视口的窗口，说明安装成功。</p> 
+         <p class="img-center"><img alt="" height="621" src="https://i-blog.csdnimg.cn/direct/55cc6d742f6046ad847674b3c14c3bb2.png" width="1093"></p> 
+         <p style="margin-left:0px; margin-right:0px">在终端上按Ctrl+C，退出脚本。</p> 
+         <h2 style="margin-left:0px; margin-right:0px">六、配置Isaac Assets</h2> 
+         <p style="margin-left:0px; margin-right:0px">安装好Isaac Lab后，在训练机器人之前，必须先配置Isaac Assets，否则无法正常使用Isaac Sim官方资产。</p> 
+         <p style="margin-left:0px; margin-right:0px">在安装Isaac Sim时，我已经下载了本地Isaac Assets（下载方式见<a class="link-info" href="https://blog.csdn.net/qq_72049033/article/details/149864740?spm=1001.2014.3001.5501" title="上一篇文章">上一篇文章</a>）。</p> 
+         <p style="margin-left:0px; margin-right:0px">用以下命令配置Isaac Assets之后，可以开始训练机器人。</p> 
+         <pre><code class="language-bash">echo 'export ISAACSIM_ASSETS_ROOT="/home/l/robot/isaacsim_assets/Assets/Isaac/4.5"' &gt;&gt; ~/.bashrc
+source ~/.bashrc</code ></pre> 
+         <h2 style="margin-left:0px; margin-right:0px">七、训练一个机器人</h2> 
+         <p style="margin-left:0px; margin-right:0px">执行以下命令快速训练一只蚂蚁走路：</p> 
+         <p style="margin-left:0px; margin-right:0px">无头模式（--headless）：适合快速训练，无图形界面加载，速度更快：</p> 
+         <pre><code class="language-bash">./isaaclab.sh -p scripts/reinforcement_learning/rsl_rl/train.py --task=Isaac-Ant-v0 --headless</code ></pre> 
+         <p style="margin-left:0px; margin-right:0px">可视化模式（无需--headless）：训练过程中可观看仿真画面：</p> 
+         <pre><code class="language-bash">./isaaclab.sh -p scripts/reinforcement_learning/rsl_rl/train.py --task=Isaac-Ant-v0 </code ></pre> 
+         <p style="margin-left:0px; margin-right:0px"><img alt="" height="639" src="https://i-blog.csdnimg.cn/direct/070959fb32da44b2a0c772d753444789.png" width="1123"></p> 
+         <h2 style="margin-left:0px; margin-right:0px">八、额外依赖问题（补充说明）</h2> 
+         <p style="margin-left:0px; margin-right:0px">安装好Isaac Lab后，再次运行Isaac Sim可能会看到许多因Isaac Sim的Python环境缺少Isaac Lab所需依赖导致的报错。</p> 
+         <p style="margin-left:0px; margin-right:0px">这些报错不影响Isaac Sim的正常运行，如果想消除它们可以在Isaac Sim自带的Python环境中安装缺失的库。</p> 
+         <p style="margin-left:0px; margin-right:0px">注意确保CUDA版本与Isaac Lab虚拟环境中保持一致（例如我的环境是CUDA 12.8）：</p> 
+         <pre><code class="language-bash">/home/&lt;username&gt;/isaacsim/kit/python/bin/python3 -m pip install --upgrade pip
+/home/&lt;username&gt;/isaacsim/kit/python/bin/python3 -m pip install \
+&nbsp; torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu128 \
+&nbsp; pillow numpy scipy matplotlib tqdm \
+&nbsp; hydra-core gym==0.26.2 gymnasium \
+&nbsp; pyquaternion shapely transforms3d \
+&nbsp; opencv-python transforms3d</code ></pre> 
+         <p style="margin-left:0px; margin-right:0px">（注意要把&lt;username&gt;替换为自己的用户名）</p> 
+        </div> 
+       </div> 
+      </article>   
+      <img src="https://img-home.csdnimg.cn/images/20211209110851.png" alt="pdf_watermark" width="0" height="0" style="display: none"> 
+      <div class="print_watermark"></div> 
+      <div class="print_watermark_info"> 
+       <p>内容来源：csdn.net</p> 
+       <p>作者昵称：莫陵123</p> 
+       <p>原文链接：https://blog.csdn.net/qq_72049033/article/details/150110095</p> 
+       <p>作者主页：https://blog.csdn.net/qq_72049033</p> 
+      </div> 
+      <style>
+    .print_watermark, .print_watermark_info {
+      display: none
+    }
+    @media print {
+      body {
+        -webkit-print-color-adjust: exact; /* Chrome, Safari */
+        color-adjust: exact; /* Firefox */
+        background-image: none !important;
+      }
+      * {
+        -webkit-print-color-adjust: exact;
+      }
+      .blog-content-box {
+        padding: 0;
+      }
+      .blog-content-box .article-header .article-info-box > div:not(.article-bar-top){
+        display: none !important;
+      }
+      .blog-content-box .article-header .article-info-box  .article-bar-top img{
+          display:none
+      }
+      .blog-content-box .article-header .article-info-box > .article-bar-top .bar-content > *:not(.follow-nickName):not(.time){
+          display: none !important;
+      }
+      .print_watermark {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 999;
+        background-image: url('https://img-home.csdnimg.cn/images/20211209110851.png');
+        background-size: 180px auto;
+        background-repeat: repeat;
+      }
+      .print_watermark_info {
+        display: block;
+        position: fixed;
+        bottom: 16px;
+        right: 0;
+        z-index: 1000;
+        color: #e8e8ed;
+        font-size: 12px;
+        ocapity: .5
+      }
+      @page {
+        margin: 0 10mm 10mm;
+        size: landscape;
+      }
+      body, article {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #csdn-toolbar,.main_father > *:not(#mainBox), .csdn-side-toolbar, .main_father aside {
+        display: none !important;
+      }
+      .main_father > #mainBox {
+        width: unset
+      }
+      .main_father > #mainBox > main > *:not(.blog-content-box){
+        display: none !important;
+      }
+    }
+  </style> 
+     </div>       
+     <div id="pcCommentBox" class="comment-box comment-box-new2 login-comment-box-new" style="display:none"> 
+      <div class="has-comment" style="display:block"> 
+       <div class="one-line-box"> 
+        <div class="has-comment-tit go-side-comment"> 
+         <span class="count">0</span>&nbsp;条评论 
+        </div> 
+        <div class="has-comment-con comment-operate-item"></div> 
+        <a class="has-comment-bt-right go-side-comment focus">写评论</a> 
+       </div> 
+      </div> 
+     </div>     
+     <div class="blog-footer-bottom" style="margin-top:10px;"></div>   
+    </main> 
+    <aside class="blog_container_aside "> 
+     <div id="asideProfile" class="aside-box active"> 
+      <div class="profile-intro d-flex"> 
+       <div class="avatar-box d-flex justify-content-center flex-column"> 
+        <a href="https://blog.csdn.net/qq_72049033" target="_blank" data-report-click="{&quot;mod&quot;:&quot;popu_379&quot;,&quot;spm&quot;:&quot;3001.4121&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/qq_72049033&quot;,&quot;ab&quot;:&quot;new&quot;}"> <img src="https://profile-avatar.csdnimg.cn/fb8895ec251e4380adf47265fce5d11b_qq_72049033.jpg!1" class="avatar_pic"> </a> 
+       </div> 
+       <div class="user-info d-flex flex-column profile-intro-name-box"> 
+        <div class="profile-intro-name-boxTop"> 
+         <a href="https://blog.csdn.net/qq_72049033" target="_blank" class="" id="uid" title="莫陵123" data-report-click="{&quot;mod&quot;:&quot;popu_379&quot;,&quot;spm&quot;:&quot;3001.4122&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/qq_72049033&quot;,&quot;ab&quot;:&quot;new&quot;}"> <span class="name" username="qq_72049033">莫陵123</span> </a> 
+        </div> 
+        <div class="profile-intro-name-boxFooter-new"> 
+         <p class="profile-intro-name-leve"> <span> 博客等级 </span> <img class="level" src="https://csdnimg.cn/identity/blog2.png"> </p> 
+         <span class="profile-intro-name-years" title="已加入 CSDN 3年">码龄3年</span> 
+        </div> 
+       </div> 
+      </div> 
+      <div class="profile-intro-rank-information"> 
+       <dl> 
+        <a href="https://blog.csdn.net/qq_72049033" data-report-click="{&quot;mod&quot;:&quot;1598321000_001&quot;,&quot;spm&quot;:&quot;3001.4310&quot;}" data-report-query="t=1"> 
+         <dd>
+          <span>3</span>
+         </dd> 
+         <dt>
+          原创
+         </dt> </a> 
+       </dl> 
+       <dl title="79"> 
+        <dd>
+         79
+        </dd> 
+        <dt>
+         点赞
+        </dt> 
+       </dl> 
+       <dl title="111"> 
+        <dd>
+         111
+        </dd> 
+        <dt>
+         收藏
+        </dt> 
+       </dl> 
+       <dl id="fanBox" title="61"> 
+        <dd>
+         <span id="fan">61</span>
+        </dd> 
+        <dt>
+         粉丝
+        </dt> 
+       </dl> 
+      </div> 
+      <div class="profile-intro-name-boxOpration"> 
+       <div class="opt-letter-watch-box"> 
+        <a class="personal-watch bt-button" id="btnAttent">已关注</a> 
+       </div> 
+       <div class="opt-letter-watch-box"> 
+        <a rel="noopener" class="bt-button personal-letter" href="https://im.csdn.net/chat/qq_72049033" target="_blank">私信</a> 
+       </div> 
+      </div> 
+     </div> 
+     <div id="his-selection" class="aside-box"> 
+      <h3 class="aside-title">TA的精选</h3> 
+      <div class="aside-content"> 
+       <ul class="his-selection-box"> 
+        <li class="his-selection-item"> <a class="title" target="_blank" href="https://blog.csdn.net/qq_72049033/article/details/150268675" data-report-click="{&quot;spm&quot;:&quot;3001.4139&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/qq_72049033/article/details/150268675&quot;,&quot;ab&quot;:&quot;new&quot;}" data-report-view="{&quot;spm&quot;:&quot;3001.4139&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/qq_72049033/article/details/150268675&quot;,&quot;ab&quot;:&quot;new&quot;}"> <span class="tag">新</span> <span class="text">了解URDF文件</span> </a> <p class="read-count"> 1230 阅读 </p> </li> 
+        <li class="his-selection-item"> <a class="title" target="_blank" href="https://blog.csdn.net/qq_72049033/article/details/149864740" data-report-click="{&quot;spm&quot;:&quot;3001.4139&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/qq_72049033/article/details/149864740&quot;,&quot;ab&quot;:&quot;new&quot;}" data-report-view="{&quot;spm&quot;:&quot;3001.4139&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/qq_72049033/article/details/149864740&quot;,&quot;ab&quot;:&quot;new&quot;}"> <span class="tag active">热</span> <span class="text">Isaac Sim 4.5安装全流程（RTX 3090+Ubuntu 22.04）</span> </a> <p class="read-count"> 3734 阅读 </p> </li> 
+       </ul> 
+      </div> 
+     </div> 
+     <div id="asideHotArticle" class="aside-box"> 
+      <h3 class="aside-title">大家在看</h3> 
+      <div class="aside-content"> 
+       <ul class="hotArticle-list"> 
+        <li> <a href="https://blog.csdn.net/licongzhuo/article/details/154905451" target="_blank" data-report-click="{&quot;spm&quot;:&quot;3001.10093&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/licongzhuo/article/details/154905451&quot;,&quot;strategy&quot;:&quot;202_1052723-3633687_RCMD&quot;,&quot;ab&quot;:&quot;new&quot;}" data-report-view="{&quot;spm&quot;:&quot;3001.10093&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/licongzhuo/article/details/154905451&quot;,&quot;strategy&quot;:&quot;202_1052723-3633687_RCMD&quot;,&quot;ab&quot;:&quot;new&quot;}"> m042在线云音乐系统 </a> </li> 
+        <li> <a href="https://blog.csdn.net/v_rjsj985/article/details/155570271" target="_blank" data-report-click="{&quot;spm&quot;:&quot;3001.10093&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/v_rjsj985/article/details/155570271&quot;,&quot;strategy&quot;:&quot;202_1052723-3633601_RCMD&quot;,&quot;ab&quot;:&quot;new&quot;}" data-report-view="{&quot;spm&quot;:&quot;3001.10093&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/v_rjsj985/article/details/155570271&quot;,&quot;strategy&quot;:&quot;202_1052723-3633601_RCMD&quot;,&quot;ab&quot;:&quot;new&quot;}"> （最新原创毕设）SpringBoot健康管理系统/12.09（白嫖源码+演示录像）|可做计算机毕设Java、Python、PHP、小程序APP、C#、爬虫大数据、单片机、文案 <img src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png" alt=""> <span class="read">547</span> </a> </li> 
+        <li> <a href="https://blog.csdn.net/2301_80760123/article/details/155544473" target="_blank" data-report-click="{&quot;spm&quot;:&quot;3001.10093&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/2301_80760123/article/details/155544473&quot;,&quot;strategy&quot;:&quot;202_1052723-3633691_RCMD&quot;,&quot;ab&quot;:&quot;new&quot;}" data-report-view="{&quot;spm&quot;:&quot;3001.10093&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/2301_80760123/article/details/155544473&quot;,&quot;strategy&quot;:&quot;202_1052723-3633691_RCMD&quot;,&quot;ab&quot;:&quot;new&quot;}"> 机械臂添加Realsense d435眼在手上——ROS2焊接机械臂（四） <img src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png" alt=""> <span class="read">721</span> </a> </li> 
+        <li> <a href="https://blog.csdn.net/2501_92826758/article/details/155744309" target="_blank" data-report-click="{&quot;spm&quot;:&quot;3001.10093&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/2501_92826758/article/details/155744309&quot;,&quot;strategy&quot;:&quot;202_1052723-3633648_RCMD&quot;,&quot;ab&quot;:&quot;new&quot;}" data-report-view="{&quot;spm&quot;:&quot;3001.10093&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/2501_92826758/article/details/155744309&quot;,&quot;strategy&quot;:&quot;202_1052723-3633648_RCMD&quot;,&quot;ab&quot;:&quot;new&quot;}"> 基于大数据的新能源汽车销量市场数据分析系统毕业设计项目源码 </a> </li> 
+        <li> <a href="https://blog.csdn.net/hungelianshu123/article/details/155717366" target="_blank" data-report-click="{&quot;spm&quot;:&quot;3001.10093&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/hungelianshu123/article/details/155717366&quot;,&quot;strategy&quot;:&quot;202_1052723-3633683_RCMD&quot;,&quot;ab&quot;:&quot;new&quot;}" data-report-view="{&quot;spm&quot;:&quot;3001.10093&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/hungelianshu123/article/details/155717366&quot;,&quot;strategy&quot;:&quot;202_1052723-3633683_RCMD&quot;,&quot;ab&quot;:&quot;new&quot;}"> 2026精选课题-基于javaweb宿舍管理系统的设计与实现 <img src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png" alt=""> <span class="read">685</span> </a> </li> 
+       </ul> 
+      </div> 
+     </div> 
+     <div id="asideArchiveNew" class="aside-box"> 
+      <h3 class="aside-title">TA的历史创作历程</h3> 
+      <div class="aside-content"> 
+       <div class="archive-box"> 
+        <div class="archive-list-item-container"> 
+         <div class="swiper-btn swiper-prev"> 
+          <svg class="icon-swiper-btn" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewbox="0 0 16 16" fill="none"> 
+           <path d="M10.3535 2.35352L4.70703 8L10.3535 13.6465L9.64648 14.3535L3.29297 8L9.64648 1.64648L10.3535 2.35352Z" fill="currentColor" /> 
+          </svg> 
+         </div> 
+         <div class="swiper"> 
+          <div class="swiper-wrapper"> 
+           <div class="swiper-slide archive-list-item">
+            <a href="https://blog.csdn.net/qq_72049033?type=blog&amp;year=2025&amp;month=08" target="_blank" data-report-click="{&quot;mod&quot;:&quot;popu_538&quot;,&quot;spm&quot;:&quot;3001.4138&quot;,&quot;ab&quot;:&quot;new&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/qq_72049033?type=blog&amp;year=2025&amp;month=08&quot;}"><span class="year"> 2025年</span><span class="num"> 3篇</span></a>
+           </div> 
+          </div> 
+         </div> 
+         <div class="swiper-btn swiper-next"> 
+          <svg class="icon-swiper-btn" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewbox="0 0 16 16" fill="none"> 
+           <path d="M5.64649 2.35352L11.293 8L5.64648 13.6465L6.35352 14.3535L12.707 8L6.35352 1.64649L5.64649 2.35352Z" fill="currentColor" /> 
+          </svg> 
+         </div> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+     <div id="asideCategory" class="aside-box aside-box-column "> 
+      <h3 class="aside-title">分类专栏</h3> 
+      <div class="aside-content" id="aside-content"> 
+       <ul> 
+        <li> <a class="clearfix special-column-name" href="https://blog.csdn.net/qq_72049033/category_13024345.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/qq_72049033/category_13024345.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+          <div class="special-column-bar "></div> <img src="https://i-blog.csdnimg.cn/columns/default/20201014180756916.png?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://i-blog.csdnimg.cn/columns/default/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> <span class="title oneline"> Isaac Sim </span> </a> <span class="special-column-num">3篇</span> </li> 
+        <li> <a class="clearfix special-column-name" href="https://blog.csdn.net/qq_72049033/category_13054455.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/qq_72049033/category_13054455.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+          <div class="special-column-bar "></div> <img src="https://i-blog.csdnimg.cn/columns/default/20201014180756927.png?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://i-blog.csdnimg.cn/columns/default/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> <span class="title oneline"> ROS2 </span> </a> <span class="special-column-num">1篇</span> </li> 
+       </ul> 
+      </div> 
+     </div> 
+     <div class="article-previous" id="article-previous"> 
+      <dl data-report-click="{&quot;spm&quot;:&quot;3001.10752&quot;,&quot;extend1&quot;:&quot;上一篇&quot;}" data-report-view="{&quot;spm&quot;:&quot;3001.10752&quot;,&quot;extend1&quot;:&quot;上一篇&quot;}"> 
+       <dt>
+         上一篇： 
+       </dt> 
+       <dd> 
+        <a href="https://blog.csdn.net/qq_72049033/article/details/149864740" data-report-query="spm=3001.10752"> Isaac Sim 4.5安装全流程（RTX 3090+Ubuntu 22.04） </a> 
+       </dd> 
+      </dl> 
+      <dl class="next" data-report-click="{&quot;spm&quot;:&quot;3001.10796&quot;,&quot;extend1&quot;:&quot;下一篇&quot;}" data-report-view="{&quot;spm&quot;:&quot;3001.10796&quot;,&quot;extend1&quot;:&quot;下一篇&quot;}"> 
+       <dt>
+         下一篇： 
+       </dt> 
+       <dd> 
+        <a href="https://blog.csdn.net/qq_72049033/article/details/150268675" data-report-query="spm=3001.10796"> 了解URDF文件 </a> 
+       </dd> 
+      </dl> 
+     </div> 
+     <!-- 详情页显示目录 --> 
+     <!--文章目录--> 
+     <div id="asidedirectory" class="aside-box"> 
+      <div class="groupfile groupfile-active" id="directory"> 
+       <h3 class="aside-title">目录</h3> 
+       <div class="align-items-stretch group_item" id="align-items-stretch"> 
+        <div class="pos-box"> 
+         <div class="scroll-box"> 
+          <div class="toc-box"></div> 
+         </div> 
+        </div> 
+       </div> 
+       <p class="flexible-btn-new active" id="flexible-btn-groupfile" data-report-click="{&quot;spm&quot;:&quot;3001.10780&quot;,&quot;strategy&quot;:&quot;展开全部&quot;}" data-minheight="117px" data-maxheight="446px" data-fbox="#align-items-stretch"><span class="text">展开全部</span> <img class="look-more" src="https://csdnimg.cn/release/blogv2/dist/pc/img/arrowup-line-bot-White.png" alt=""></p> 
+       <p class="flexible-btn-new-close active" data-report-click="{&quot;spm&quot;:&quot;3001.10780&quot;,&quot;strategy&quot;:&quot;收起&quot;}" data-minheight="117px" data-maxheight="446px" data-fbox="#align-items-stretch"><span class="text">收起</span> <img class="look-more" src="https://csdnimg.cn/release/blogv2/dist/pc/img/arrowup-line-top-White.png" alt=""></p> 
+      </div> 
+     </div> 
+     <div class="gitcode-qc-left-box aside-box" data-report-click="{&quot;spm&quot;:&quot;3001.11256&quot;, &quot;extra&quot;:&quot;{\&quot;position\&quot;:\&quot;left\&quot;}&quot;}"></div> 
+    </aside>    
+   </div> 
+   <div class="recommend-right align-items-stretch clearfix" id="rightAside" data-type="recommend"> 
+    <aside class="recommend-right_aside"> 
+     <div class="rightside-fixed-hide"> 
+     </div> 
+     <div id="recommend-right"> 
+      <div class="flex-column aside-box groupfile groupfile-active " id="groupfile"> 
+       <div class="groupfile-div"> 
+        <h3 class="aside-title">目录</h3> 
+        <div class="align-items-stretch group_item" id="align-items-stretch-right"> 
+         <div class="pos-box"> 
+          <div class="scroll-box"> 
+           <div class="toc-box"></div> 
+          </div> 
+         </div> 
+        </div> 
+        <p class="flexible-btn-new" id="flexible-btn-groupfile" data-report-click="{&quot;spm&quot;:&quot;3001.10782&quot;,&quot;strategy&quot;:&quot;展开全部&quot;}" data-traigger="true" data-minheight="117px" data-maxheight="446px" data-fbox="#align-items-stretch-right"><span class="text">展开全部</span> <img class="look-more" src="https://csdnimg.cn/release/blogv2/dist/pc/img/arrowup-line-bot-White.png" alt=""></p> 
+        <p class="flexible-btn-new-close close" data-report-click="{&quot;spm&quot;:&quot;3001.10782&quot;,&quot;strategy&quot;:&quot;收起&quot;}" data-traigger="true" data-minheight="117px" data-maxheight="446px" data-fbox="#align-items-stretch-right"><span class="text">收起</span> <img class="look-more" src="https://csdnimg.cn/release/blogv2/dist/pc/img/arrowup-line-top-White.png" alt=""></p> 
+       </div> 
+      </div> 
+      <div class="gitcode-qc-right-box aside-box" data-report-click="{&quot;spm&quot;:&quot;3001.11256&quot;, &quot;extra&quot;:&quot;{\&quot;position\&quot;:\&quot;right\&quot;}&quot;}"></div> 
+      <div class="article-previous" id="article"> 
+       <dl data-report-click="{&quot;spm&quot;:&quot;3001.10752&quot;,&quot;extend1&quot;:&quot;上一篇&quot;}" data-report-view="{&quot;spm&quot;:&quot;3001.10752&quot;,&quot;extend1&quot;:&quot;上一篇&quot;}"> 
+        <dt>
+          上一篇： 
+        </dt> 
+        <dd> 
+         <a href="https://blog.csdn.net/qq_72049033/article/details/149864740" data-report-query="spm=3001.10752"> Isaac Sim 4.5安装全流程（RTX 3090+Ubuntu 22.04） </a> 
+        </dd> 
+       </dl> 
+       <dl class="next" data-report-click="{&quot;spm&quot;:&quot;3001.10796&quot;,&quot;extend1&quot;:&quot;下一篇&quot;}" data-report-view="{&quot;spm&quot;:&quot;3001.10796&quot;,&quot;extend1&quot;:&quot;下一篇&quot;}"> 
+        <dt>
+          下一篇： 
+        </dt> 
+        <dd> 
+         <a href="https://blog.csdn.net/qq_72049033/article/details/150268675" data-report-query="spm=3001.10796"> 了解URDF文件 </a> 
+        </dd> 
+       </dl> 
+      </div> 
+      <div class="aside-box kind_person d-flex flex-column flexible-box-new"> 
+       <h3 class="aside-title">分类专栏</h3> 
+       <div class="align-items-stretch kindof_item" id="kind_person_column"> 
+        <div class="aside-content" id="aside-content-column"> 
+         <ul> 
+          <li> <a class="clearfix special-column-name" href="https://blog.csdn.net/qq_72049033/category_13024345.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/qq_72049033/category_13024345.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://i-blog.csdnimg.cn/columns/default/20201014180756916.png?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://i-blog.csdnimg.cn/columns/default/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> <span class=""> Isaac Sim </span> </a> <span class="special-column-num">3篇</span> </li> 
+          <li> <a class="clearfix special-column-name" href="https://blog.csdn.net/qq_72049033/category_13054455.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/qq_72049033/category_13054455.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://i-blog.csdnimg.cn/columns/default/20201014180756927.png?x-oss-process=image/resize,m_fixed,h_64,w_64" alt="" onerror="this.src='https://i-blog.csdnimg.cn/columns/default/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> <span class=""> ROS2 </span> </a> <span class="special-column-num">1篇</span> </li> 
+         </ul> 
+        </div> 
+        <p class="text-center"> <a class="flexible-btn-new" data-report-click="{&quot;spm&quot;:&quot;3001.10783&quot;,&quot;strategy&quot;:&quot;展开全部&quot;}" data-traigger="true" data-maxheight="0" data-minheight="208px" data-fbox="#aside-content-column" data-flag="flag"><span class="text">展开全部</span> <img class="look-more" src="https://csdnimg.cn/release/blogv2/dist/pc/img/arrowup-line-bot-White.png" alt=""></a> <a class="flexible-btn-new-close" data-report-click="{&quot;spm&quot;:&quot;3001.10783&quot;,&quot;strategy&quot;:&quot;收起&quot;}" data-traigger="true" data-minheight="208px" data-fbox="#aside-content-column" data-scroll="true" data-flag="flag"><span class="text">收起</span> <img class="look-more" src="https://csdnimg.cn/release/blogv2/dist/pc/img/arrowup-line-top-White.png" alt=""></a> </p> 
+       </div> 
+      </div> 
+     </div> 
+    </aside> 
+   </div> 
+   <div class="recommend-right1  align-items-stretch clearfix" id="rightAsideConcision" data-type="recommend"> 
+    <aside class="recommend-right_aside"> 
+     <div id="recommend-right-concision"> 
+      <div class="flex-column aside-box groupfile" id="groupfileConcision"> 
+       <div class="groupfile-div1"> 
+        <h3 class="aside-title">目录</h3> 
+        <div class="align-items-stretch group_item"> 
+         <div class="pos-box"> 
+          <div class="scroll-box"> 
+           <div class="toc-box"></div> 
+          </div> 
+         </div> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </aside> 
+   </div> 
+  </div> 
+  <div class="mask-dark"></div> 
+  <div class="skin-boxshadow"></div> 
+  <div class="directory-boxshadow"></div> 
+  <div class="comment-side-box-shadow comment-side-tit-close" id="commentSideBoxshadow"> 
+   <div class="comment-side-content"> 
+    <div class="comment-side-tit"> 
+     <span class="comment-side-tit-count">评论</span> 
+     <img class="comment-side-tit-close" src="https://csdnimg.cn/release/blogv2/dist/pc/img/closeBt.png">
+    </div> 
+    <div id="pcCommentSideBox" class="comment-box comment-box-new2 " style="display:block"> 
+     <div class="comment-edit-box d-flex"> 
+      <div class="user-img"> 
+       <a href="https://blog.csdn.net/2501_94572338" target="_blank"> <img src="https://profile-avatar.csdnimg.cn/default.jpg!1"> </a> 
+      </div> 
+      <form id="commentform"> 
+       <textarea class="comment-content" name="comment_content" id="comment_content" placeholder="欢迎高质量的评论，低质的评论会被折叠" maxlength="1000"></textarea> 
+       <div class="comment-reward-box" style="background-image: url('https://img-home.csdnimg.cn/images/20230131025301.png');"> 
+        <a class="btn-remove-reward"></a> 
+        <div class="form-reward-box"> 
+         <div class="info">
+           成就一亿技术人! 
+         </div> 
+         <div class="price-info">
+           拼手气红包
+          <span class="price">6.0元</span> 
+         </div> 
+        </div> 
+       </div> 
+       <div class="comment-operate-box"> 
+        <div class="comment-operate-l"> 
+         <span id="tip_comment" class="tip">还能输入<em>1000</em>个字符</span> 
+        </div> 
+        <div class="comment-operate-c">
+          &nbsp; 
+        </div> 
+        <div class="comment-operate-r"> 
+         <div class="comment-operate-item comment-reward"> 
+          <img class="comment-operate-img" data-url="https://csdnimg.cn/release/blogv2/dist/pc/img/" src="https://csdnimg.cn/release/blogv2/dist/pc/img/commentReward.png" alt="红包"> 
+          <span class="comment-operate-tip">添加红包</span> 
+         </div> 
+         <div class="comment-operate-item comment-emoticon"> 
+          <img class="comment-operate-img" data-url="https://csdnimg.cn/release/blogv2/dist/pc/img/" src="https://csdnimg.cn/release/blogv2/dist/pc/img/commentEmotionIcon.png" alt="表情包"> 
+          <span class="comment-operate-tip">插入表情</span> 
+          <div class="comment-emoticon-box comment-operate-isshow"> 
+           <div class="comment-emoticon-img-box"></div> 
+          </div> 
+         </div> 
+         <div class="comment-operate-item comment-code"> 
+          <img class="comment-operate-img" data-url="https://csdnimg.cn/release/blogv2/dist/pc/img/" src="https://csdnimg.cn/release/blogv2/dist/pc/img/commentCodeIcon.png" alt="表情包"> 
+          <span class="comment-operate-tip">代码片</span> 
+          <div class="comment-code-box comment-operate-isshow"> 
+           <ul id="commentCode"> 
+            <li><a data-code="html">HTML/XML</a></li> 
+            <li><a data-code="objc">objective-c</a></li> 
+            <li><a data-code="ruby">Ruby</a></li> 
+            <li><a data-code="php">PHP</a></li> 
+            <li><a data-code="csharp">C</a></li> 
+            <li><a data-code="cpp">C++</a></li> 
+            <li><a data-code="javascript">JavaScript</a></li> 
+            <li><a data-code="python">Python</a></li> 
+            <li><a data-code="java">Java</a></li> 
+            <li><a data-code="css">CSS</a></li> 
+            <li><a data-code="sql">SQL</a></li> 
+            <li><a data-code="plain">其它</a></li> 
+           </ul> 
+          </div> 
+         </div> 
+         <div class="comment-operate-item"> 
+          <input type="hidden" id="comment_replyId" name="comment_replyId"> 
+          <input type="hidden" id="article_id" name="article_id" value="150110095"> 
+          <input type="hidden" id="comment_userId" name="comment_userId" value=""> 
+          <input type="hidden" id="commentId" name="commentId" value=""> 
+          <a data-report-click="{&quot;mod&quot;:&quot;1582594662_003&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4227&quot;,&quot;ab&quot;:&quot;new&quot;}"> <input type="submit" class="btn-comment btn-comment-input" value="评论"> </a> 
+         </div> 
+        </div> 
+       </div> 
+      </form> 
+     </div> 
+     <div class="comment-list-container"> 
+      <div class="comment-list-box comment-operate-item"> 
+      </div> 
+      <div id="lookFlodComment" class="look-flod-comment"> 
+       <span class="count"></span>&nbsp;条评论被折叠&nbsp;
+       <a class="look-more-flodcomment">查看</a> 
+      </div> 
+      <div class="opt-box text-center"> 
+       <div class="btn btn-sm btn-link-blue" id="btnMoreComment"></div> 
+      </div> 
+     </div> 
+    </div> 
+    <div id="pcFlodCommentSideBox" class="pc-flodcomment-sidebox"> 
+     <div class="comment-fold-tit">
+      <span id="lookUnFlodComment" class="back"><img src="https://csdnimg.cn/release/blogv2/dist/pc/img/commentArrowLeftWhite.png" alt=""></span>被折叠的&nbsp;
+      <span class="count"></span>&nbsp;条评论 
+      <a href="https://blogdev.blog.csdn.net/article/details/122245662" class="tip" target="_blank">为什么被折叠?</a> 
+      <a href="https://bbs.csdn.net/forums/FreeZone" class="park" target="_blank"> <img src="https://csdnimg.cn/release/blogv2/dist/pc/img/iconPark.png">到【灌水乐园】发言</a> 
+     </div> 
+     <div class="comment-fold-content"></div> 
+     <div id="lookBadComment" class="look-bad-comment side-look-comment"> 
+      <a class="look-more-comment">查看更多评论<img src="https://csdnimg.cn/release/blogv2/dist/pc/img/commentArrowDownWhite.png" alt=""></a> 
+     </div> 
+    </div> 
+   </div> 
+   <div class="comment-rewarddialog-box"> 
+    <div class="form-box"> 
+     <div class="title-box">
+       添加红包 
+      <a class="btn-form-close"></a> 
+     </div> 
+     <form id="commentRewardForm"> 
+      <div class="ipt-box"> 
+       <label for="txtName">祝福语</label> 
+       <div class="ipt-btn-box"> 
+        <input type="text" name="name" id="txtName" autocomplete="off" maxlength="50"> 
+        <a class="btn-ipt btn-random"></a> 
+       </div> 
+       <p class="notice">请填写红包祝福语或标题</p> 
+      </div> 
+      <div class="ipt-box"> 
+       <label for="txtSendAmount">红包数量</label> 
+       <div class="ipt-txt-box"> 
+        <input type="text" name="sendAmount" maxlength="4" id="txtSendAmount" placeholder="请填写红包数量(最小10个)" autocomplete="off"> 
+        <span class="after-txt">个</span> 
+       </div> 
+       <p class="notice">红包个数最小为10个</p> 
+      </div> 
+      <div class="ipt-box"> 
+       <label for="txtMoney">红包总金额</label> 
+       <div class="ipt-txt-box error"> 
+        <input type="text" name="money" maxlength="5" id="txtMoney" placeholder="请填写总金额(最低5元)" autocomplete="off"> 
+        <span class="after-txt">元</span> 
+       </div> 
+       <p class="notice">红包金额最低5元</p> 
+      </div> 
+      <div class="balance-info-box"> 
+       <label>余额支付</label> 
+       <div class="balance-info">
+         当前余额
+        <span class="balance">3.43</span>元 
+        <a href="https://i.csdn.net/#/wallet/balance/recharge" class="link-charge" target="_blank">前往充值 &gt;</a> 
+       </div> 
+      </div> 
+      <div class="opt-box"> 
+       <div class="pay-info">
+         需支付：
+        <span class="price">10.00</span>元 
+       </div> 
+       <button type="button" class="ml-auto btn-cancel">取消</button> 
+       <button type="button" class="ml8 btn-submit" disabled="true">确定</button> 
+      </div> 
+     </form> 
+    </div> 
+   </div> 
+   <div class="rr-guide-box"> 
+    <div class="rr-first-box"> 
+     <img src="https://csdnimg.cn/release/blogv2/dist/pc/img/guideRedReward02.png" alt=""> 
+     <button class="btn-guide-known next">下一步</button> 
+    </div> 
+    <div class="rr-second-box"> 
+     <img src="https://csdnimg.cn/release/blogv2/dist/pc/img/guideRedReward03.png" alt=""> 
+     <button class="btn-guide-known known">知道了</button> 
+    </div> 
+   </div> 
+  </div> 
+  <div class="redEnvolope" id="redEnvolope"> 
+   <div class="env-box"> 
+    <div class="env-container"> 
+     <div class="pre-open" id="preOpen"> 
+      <div class="top"> 
+       <header> 
+        <img class="clearTpaErr" :src="redpacketAuthor.avatar" alt=""> 
+        <div class="author">
+         成就一亿技术人!
+        </div> 
+       </header> 
+       <div class="bot-icon"></div> 
+      </div> 
+      <footer> 
+       <div class="red-openbtn open-start"></div> 
+       <div class="tip">
+         领取后你会自动成为博主和红包主的粉丝 
+        <a class="rule" target="_blank">规则</a> 
+       </div> 
+      </footer> 
+     </div> 
+     <div class="opened" id="opened"> 
+      <div class="bot-icon"> 
+       <header> 
+        <a class="creatorUrl" href="" target="_blank"> <img class="clearTpaErr" src="https://profile-avatar.csdnimg.cn/default.jpg!2" alt=""> </a> 
+        <div class="author"> 
+         <div class="tt">
+          hope_wisdom
+         </div> 发出的红包 
+        </div> 
+       </header> 
+      </div> 
+      <div class="receive-box"> 
+       <header></header> 
+       <div class="receive-list"> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+    <div class="close-btn"></div> 
+   </div> 
+  </div> 
+  <div class="pay-code"> 
+   <div class="pay-money">
+    实付
+    <span class="pay-money-span" data-nowprice="" data-oldprice="">元</span>
+   </div> 
+   <div class="content-blance">
+    <a class="blance-bt" href="javascript:;">使用余额支付</a>
+   </div> 
+   <div class="content-code"> 
+    <div id="payCode" data-id=""> 
+     <div class="renovate"> 
+      <img src="https://csdnimg.cn/release/blogv2/dist/pc/img/pay-time-out.png"> 
+      <span>点击重新获取</span> 
+     </div> 
+    </div> 
+    <div class="pay-style">
+     <span><img src="https://csdnimg.cn/release/blogv2/dist/pc/img/weixin.png"></span>
+     <span><img src="https://csdnimg.cn/release/blogv2/dist/pc/img/zhifubao.png"></span>
+     <span><img src="https://csdnimg.cn/release/blogv2/dist/pc/img/jingdong.png"></span>
+     <span class="text">扫码支付</span>
+    </div> 
+   </div> 
+   <div class="bt-close"> 
+    <svg t="1567152543821" class="icon" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="10924" xmlns:xlink="http://www.w3.org/1999/xlink" width="12" height="12"> 
+     <defs> 
+      <style type="text/css"></style> 
+     </defs> 
+     <path d="M512 438.378667L806.506667 143.893333a52.032 52.032 0 1 1 73.6 73.621334L585.621333 512l294.485334 294.485333a52.074667 52.074667 0 0 1-73.6 73.642667L512 585.621333 217.514667 880.128a52.053333 52.053333 0 1 1-73.621334-73.642667L438.378667 512 143.893333 217.514667a52.053333 52.053333 0 1 1 73.621334-73.621334L512 438.378667z" fill="" p-id="10925"></path> 
+    </svg> 
+   </div> 
+   <div class="pay-balance"> 
+    <input type="radio" class="pay-code-radio" data-type="details"> 
+    <span class="span">钱包余额</span> 
+    <span class="balance" style="color:#FC5531;font-size:14px;">0</span> 
+    <div class="pay-code-tile"> 
+     <img src="https://csdnimg.cn/release/blogv2/dist/pc/img/pay-help.png" alt=""> 
+     <div class="pay-code-content"> 
+      <div class="span"> 
+       <p class="title">抵扣说明：</p> 
+       <p> 1.余额是钱包充值的虚拟货币，按照1:1的比例进行支付金额的抵扣。<br> 2.余额无法直接购买下载，可以购买VIP、付费专栏及课程。</p> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+   <a class="pay-balance-con" href="https://i.csdn.net/#/wallet/balance/recharge" target="_blank"><img src="https://csdnimg.cn/release/blogv2/dist/pc/img/recharge.png" alt=""><span>余额充值</span></a> 
+  </div>  
+  <div class="keyword-dec-box" id="keywordDecBox"></div>  
+  <!-- 富文本柱状图  --> 
+  <link rel="stylesheet" href="https://csdnimg.cn/release/blog_editor_html/release1.6.12/ckeditor/plugins/chart/chart.css">        
+  <link rel="stylesheet" href="https://g.csdnimg.cn/lib/cboxEditor/1.1.6/embed-editor.min.css"> 
+  <link rel="stylesheet" href="https://csdnimg.cn/release/blog_editor_html/release1.6.12/ckeditor/plugins/codesnippet/lib/highlight/styles/atom-one-dark.css">                  
+ </body>
+</html>
